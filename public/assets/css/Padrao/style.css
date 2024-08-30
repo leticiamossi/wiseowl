@@ -1,0 +1,15 @@
+.fundo-roxo {
+    background: #5B009B;
+    width: 100vw;
+    height: 100vh;
+}
+
+.caixa {
+    position: fixed;
+    background-color: #FFFFFF;
+    width: calc(100vw - 150px - 50px);
+    height: calc(100vh - 30px);
+    margin-left: calc(150px + 25px);
+    margin-top: 15px;
+    border-radius: 20px;
+}
