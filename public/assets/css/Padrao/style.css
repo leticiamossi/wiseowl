@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Brasika;
+    src: url("../../font/brasika.otf");
+}
 .fundo-roxo {
     background: #5B009B;
     width: 100vw;
@@ -12,6 +16,13 @@
     margin-left: calc(150px + 25px);
     margin-top: 15px;
     border-radius: 20px;
+}
+
+.caixa-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon-roxo {
@@ -63,4 +74,56 @@
     font-family: "Andada Pro", serif;
     font-size: 1em;
     letter-spacing: 1px;
+}
+
+.btn-form {
+    padding: 10px 50px;
+    background-color: #5B009B;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0 0 0 auto;
+    display: block;
+    transition: .2s;
+}
+
+.btn-form:hover {
+    background-color: #91CD93;
+    transform: scale(1.05);
+    transition: .2s;
+}
+
+.titulo-main {
+    font-family: Brasika;
+    color: #5B009B;
+}
+
+.form-prova {
+ 
+}
+
+.inp {
+    display: flex;
+    flex-direction: column;
+    font-family: "Andada Pro", serif;
+    margin: 20px 0;
+}
+
+.inp-linha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.inp input {
+    padding: 10px 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    outline: none;
+    width: 500px;
+}
+
+.inp-linha input {
+    width: 230px;
 }

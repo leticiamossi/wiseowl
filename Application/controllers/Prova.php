@@ -8,6 +8,11 @@ class Prova extends Controller
     {
         $this->view('prova/index');
     }
+
+    public function formularioInicial()
+    {
+        $this->view('prova/formularioInicial');
+    }
 }
 
 ?>
