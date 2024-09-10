@@ -13,6 +13,11 @@ class Prova extends Controller
     {
         $this->view('prova/formularioInicial');
     }
+
+    public function tipoQuestao()
+    {
+        $this->view('prova/tipoQuestao');
+    }
 }
 
 ?>

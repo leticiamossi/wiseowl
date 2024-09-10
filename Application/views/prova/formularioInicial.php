@@ -60,7 +60,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Montar Prova</h2>
-            <form action="" class="form-prova">
+            <form action="/prova/tipoQuestao" method="POST" class="form-prova">
                 <div class="inp">
                     <label for="">Qual a matéria da prova?</label>
                     <input type="text" name="" id="">
@@ -72,10 +72,6 @@
                 <div class="inp">
                     <label for="">Data da aplicaçao:</label>
                     <input type="date" name="" id="">
-                </div>
-                <div class="inp">
-                    <label for="">Número de questoes: </label>
-                    <input type="text" name="" id="">
                 </div>
                 <div class="inp-linha">
                     <div class="inp">
