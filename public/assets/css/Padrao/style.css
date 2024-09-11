@@ -16,12 +16,13 @@
     margin-left: calc(150px + 25px);
     margin-top: 15px;
     border-radius: 20px;
+    overflow-y: auto;
 }
 
 .caixa-center {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -93,9 +94,14 @@
 }
 
 .btn-form:hover {
-    background-color: #91CD93;
+    background-color: #A5D6A7;
     transform: scale(1.05);
     transition: .2s;
+}
+
+.btn-sec {
+    background-color: #91CD93;
+    margin: 0 0 10px auto;
 }
 
 .titulo-main {
@@ -120,12 +126,19 @@
     justify-content: space-between;
 }
 
-.inp input {
+.inp input, textarea {
     padding: 10px 10px;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     outline: none;
     width: 500px;
+}
+
+.inp-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 450px;
 }
 
 .inp-linha input {

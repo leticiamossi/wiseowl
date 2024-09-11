@@ -18,6 +18,11 @@ class Prova extends Controller
     {
         $this->view('prova/tipoQuestao');
     }
+
+    public function personalizada()
+    {
+        $this->view('prova/personalizada');
+    }
 }
 
 ?>
