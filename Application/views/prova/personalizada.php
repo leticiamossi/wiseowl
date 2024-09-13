@@ -89,6 +89,16 @@
                     <label for="resp-e">e) </label>
                     <input type="text" id="resp-e">
                 </div>
+                <div class="inp inp-row">
+                    <label for="correta">Correta </label>
+                    <select name="correta" id="correta">
+                        <option>a</option>
+                        <option>b</option>
+                        <option>c</option>
+                        <option>d</option>
+                        <option>e</option>
+                    </select>
+                </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
                 <button class="btn-form" formaction="/cadastro/personalizada/prova" formmethod="POST">Finalizar</button>
             </form>
