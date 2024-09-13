@@ -23,6 +23,11 @@ class Prova extends Controller
     {
         $this->view('prova/personalizada');
     }
+
+    public function ia()
+    {
+        $this->view('prova/ia');
+    }
 }
 
 ?>
