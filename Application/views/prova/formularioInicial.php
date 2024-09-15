@@ -62,30 +62,40 @@
             <h2 class="titulo-main">Montar Prova</h2>
             <form action="/prova/tipoQuestao" method="POST" class="form-prova">
                 <div class="inp">
-                    <label for="">Qual a matéria da prova?</label>
-                    <input type="text" name="" id="">
+                    <label for="materia">Qual a matéria da prova?</label>
+                    <select name="materia" id="materia">
+                        <option disabled selected>Selecione a Matéria</option>
+                        <?php foreach($data['materias'] as $materia) { ?>
+                            <option value="<?php echo $materia['id_materia'] ?>"><?php echo $materia['nome_materia'] ?></option>
+                            <?php } ?>
+                    </select>
                 </div>
                 <div class="inp">
-                    <label for="">Para qual turma será aplicada?</label>
-                    <input type="text" name="" id="">
+                    <label for="turma">Para qual turma será aplicada?</label>
+                    <select name="turma" id="turma">
+                        <option disabled selected>Selecione a turma</option>
+                        <?php foreach($data['turmas'] as $turma) { ?>
+                            <option value="<?php echo $turma['id_turma'] ?>"><?php echo $turma['nome_turma'] ?></option>
+                            <?php } ?>
+                    </select>
                 </div>
                 <div class="inp">
-                    <label for="">Data da aplicaçao:</label>
-                    <input type="date" name="" id="">
+                    <label for="data">Data da aplicaçao:</label>
+                    <input type="date" name="data" id="data">
                 </div>
                 <div class="inp-linha">
                     <div class="inp">
-                        <label for="">Nota máxima: </label>
-                        <input type="number" name="" id="" value="10">
+                        <label for="notaMax">Nota máxima: </label>
+                        <input type="number" name="notaMax" id="notaMax" value="10">
                     </div>
                     <div class="inp">
-                        <label for="">Nota média: </label>
-                        <input type="number" name="" id="" value="6">
+                        <label for="notaMed">Nota média: </label>
+                        <input type="number" name="notaMed" id="notaMed" value="6">
                     </div>
                 </div>
                 <div class="inp">
-                    <label for="">Observaçao </label>
-                    <input type="text" name="" id="">
+                    <label for="obs">Observaçao </label>
+                    <input type="text" name="obs" id="obs">
                 </div>
                 <input type="submit" value="Próximo" class="btn-form">
             </form>
