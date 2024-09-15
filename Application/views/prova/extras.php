@@ -59,47 +59,37 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Questão XX</h2>
-            <form action="/cadastro/extra/personalizada">
+            <div class="linha">
+                <h2 class="titulo-main">Questão XX</h2>
+            </div>
+            <form action="/cadastro/questaoProva">
                 <div class="inp">
-                    <label for="enunciado">Enunciado:</label>
-                    <textarea name="enunciado" id="enunciado"></textarea>
-                </div>
-                <input type="file" id="fileInput" accept="image/*">
-                <div id="output">
-                    <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
-                </div>
-                <div class="inp inp-row">
-                    <label for="resp-a">a) </label>
-                    <input type="text" id="resp-a">
-                </div>
-                <div class="inp inp-row">
-                    <label for="resp-b">b) </label>
-                    <input type="text" id="resp-b">
-                </div>
-                <div class="inp inp-row">
-                    <label for="resp-c">c) </label>
-                    <input type="text" id="resp-c">
-                </div>
-                <div class="inp inp-row">
-                    <label for="resp-d">d) </label>
-                    <input type="text" id="resp-d">
-                </div>
-                <div class="inp inp-row">
-                    <label for="resp-e">e) </label>
-                    <input type="text" id="resp-e">
-                </div>
-                <div class="inp inp-row">
-                    <label for="correta">Correta </label>
-                    <select name="correta" id="correta">
-                        <option>a</option>
-                        <option>b</option>
-                        <option>c</option>
-                        <option>d</option>
-                        <option>e</option>
+                    <label for="assunto">Assunto</label>
+                    <select name="assunto" id="assunto">
+
                     </select>
                 </div>
+                <div class="inp">
+                    <label for="topico">Tópico Específico</label>
+                    <select name="topico" id="topico">
+
+                    </select>
+                </div>
+                <div class="inp">
+                    <label for="dificuldade">Dificuldade</label>
+                    <select name="dificuldade" id="dificuldade">
+                        <option disabled selected>Selecione a dificuldade</option>
+                        <option value="facil">Fácil</option>
+                        <option value="intermediaria">Intermediária</option>
+                        <option value="dificil">Difícil</option>
+                    </select>
+                </div>
+                <div class="inp">
+                    <label for="">Peso da Questão</label>
+                    <input type="number" value="1">
+                </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
+                <button class="btn-form" formaction="/cadastro/personalizada/prova" formmethod="POST">Finalizar</button>
             </form>
         </div>
     </main>

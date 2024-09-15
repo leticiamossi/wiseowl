@@ -60,7 +60,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Questão XX</h2>
-            <form action="/cadastro/personalizada">
+            <form action="/cadastro/extra/descritiva">
                 <div class="inp">
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"></textarea>
@@ -70,7 +70,6 @@
                     <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
-                <button class="btn-form" formaction="/cadastro/personalizada/prova" formmethod="POST">Finalizar</button>
             </form>
         </div>
     </main>

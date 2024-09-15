@@ -68,7 +68,7 @@
                     </svg>
                 </button>
             </div>
-            <form action="/cadastro/personalizada">
+            <form action="/cadastro/extra/ia">
                 <div class="inp">
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"> <?php echo $data['enunciado']?></textarea>
@@ -109,7 +109,6 @@
                     </select>
                 </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
-                <button class="btn-form" formaction="/cadastro/personalizada/prova" formmethod="POST">Finalizar</button>
             </form>
         </div>
     </main>
