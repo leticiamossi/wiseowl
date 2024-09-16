@@ -59,35 +59,35 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Questão XX</h2>
-            <form action="/cadastro/extra/personalizada">
+            <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
+            <form action="/cadastro/extra/personalizada/<?php echo $data['id']."-".$data['num']?>" enctype="multipart/form-data" method="POST">
                 <div class="inp">
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"></textarea>
                 </div>
-                <input type="file" id="fileInput" accept="image/*">
+                <input type="file" id="fileInput" accept="image/*" name="fileInput">
                 <div id="output">
                     <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-a">a) </label>
-                    <input type="text" id="resp-a">
+                    <input type="text" id="resp-a" name="resp-a">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-b">b) </label>
-                    <input type="text" id="resp-b">
+                    <input type="text" id="resp-b" name="resp-b">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-c">c) </label>
-                    <input type="text" id="resp-c">
+                    <input type="text" id="resp-c" name="resp-c">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-d">d) </label>
-                    <input type="text" id="resp-d">
+                    <input type="text" id="resp-d" name="resp-d">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-e">e) </label>
-                    <input type="text" id="resp-e">
+                    <input type="text" id="resp-e" name="resp-e">
                 </div>
                 <div class="inp inp-row">
                     <label for="correta">Correta </label>

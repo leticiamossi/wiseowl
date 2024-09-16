@@ -30,10 +30,13 @@ class Prova extends Controller
         $obs = $_POST['obs'];
 
         $conn = $this->model('prova');
-        $insert = $conn::AddProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
-
+        //$insert = $conn::AddProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
+        $insert = 2;
         if($insert > 0){
-            $this->view('prova/tipoQuestao');
+            //$id = $conn::GetIdProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
+            $id = "1";
+            $num = 1;
+            $this->view('prova/tipoQuestao', ['id' => $id, 'num' => $num]);
         } else {
             $msg = "<script>Houve um erro. Tente Novamente!</script>";
             echo $msg;
@@ -43,9 +46,12 @@ class Prova extends Controller
 
     }
 
-    public function personalizada()
+    public function personalizada($idNum)
     {
-        $this->view('prova/personalizada');
+        $aux = explode('-',$idNum);
+        $id = $aux[0];
+        $num = $aux[1];
+        $this->view('prova/personalizada', ['id' => $id, 'num' => $num]);
     }
 
     public function ia()

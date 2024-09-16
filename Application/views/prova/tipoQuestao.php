@@ -59,8 +59,8 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Questão XX</h2>
-            <a href="/prova/banco" class="btn-a">
+            <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
+            <a href="/prova/banco/<?php echo $data['id']."-".$data['num']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down-right" viewBox="0 0 16 16">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/prova/personalizada" class="btn-a">
+            <a href="/prova/personalizada/<?php echo $data['id']."-".$data['num']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/prova/ia" class="btn-a">
+            <a href="/prova/ia/<?php echo $data['id']."-".$data['num']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-robot" viewBox="0 0 16 16">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/prova/descritiva" class="btn-a">
+            <a href="/prova/descritiva/<?php echo $data['id']."-".$data['num']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
