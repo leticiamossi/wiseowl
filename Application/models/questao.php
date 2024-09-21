@@ -16,6 +16,14 @@ class Questao
         return $result->rowCount();
     }
 
+    public static function AddExtras(string $id, string $assunto, string $dificuldade)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("UPDATE tb_questoesObj SET assunto_questao = :ASS, dificuldade_questao = :DIF WHERE id_questao = :ID",
+                                        array(':ASS' => $assunto, ':DIF' => $dificuldade, ':ID' => $id));
+        return $result->rowCount();
+    }
+
     public static function GetIdQuestao(string $enunciado, string $imagem, string $a, string $b, string $c, string $d, string $e, string $certa, string $tamanho, string $prof, string $origem)
     {
         $conn = new Database();

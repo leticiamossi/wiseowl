@@ -60,36 +60,55 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <div class="linha">
-                <h2 class="titulo-main">Questão XX</h2>
+                <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
             </div>
-            <form action="/cadastro/questaoProva">
+            <form action="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ'][0]['id_questao']?>" method="POST">
                 <div class="inp">
                     <label for="assunto">Assunto</label>
-                    <select name="assunto" id="assunto">
-
+                    <select name="assunto" id="assunto" onchange="GetAssunto()" required>
+                        <option disabled selected value="">Selecione um assunto</option>
+                        <?php foreach($data['assuntos'] as $assunto) { ?>
+                            <option><?php echo $assunto['assunto_assunto'] ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="inp">
                     <label for="topico">Tópico Específico</label>
-                    <select name="topico" id="topico">
-
+                    <select name="topico" id="topico" req4>
+                        <option disabled selected value="">Selecione um tópico</option>
                     </select>
-                </div>
+                </div> 
+                <script>
+                    const json = JSON.parse('<?= json_encode($data['topicos']); ?>');
+                    function GetAssunto(){
+                        var assunto = document.getElementById('assunto').value
+                        var select = document.getElementById('topico')
+                        
+                        select.options.length = 1
+                        
+                        
+                        json.forEach(dado => {
+                            if(dado.assunto_assunto == assunto){
+                                select.options[select.options.length] = new Option(dado.topico_assunto, dado.id_assunto);
+                            }
+                        })
+                    }
+                </script>
                 <div class="inp">
                     <label for="dificuldade">Dificuldade</label>
-                    <select name="dificuldade" id="dificuldade">
-                        <option disabled selected>Selecione a dificuldade</option>
-                        <option value="facil">Fácil</option>
-                        <option value="intermediaria">Intermediária</option>
-                        <option value="dificil">Difícil</option>
+                    <select name="dificuldade" id="dificuldade" required>
+                        <option disabled selected value="">Selecione a dificuldade</option>
+                        <option value="1">Fácil</option>
+                        <option value="2">Intermediária</option>
+                        <option value="3">Difícil</option>
                     </select>
                 </div>
                 <div class="inp">
-                    <label for="">Peso da Questão</label>
-                    <input type="number" value="1">
+                    <label for="peso">Peso da Questão</label>
+                    <input type="number" value="1" id="peso" name="peso" required>
                 </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
-                <button class="btn-form" formaction="/cadastro/personalizada/prova" formmethod="POST">Finalizar</button>
+                <button class="btn-form" formaction="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ'][0]['id_questao']."/end"?>" formmethod="POST">Finalizar</button>
             </form>
         </div>
     </main>

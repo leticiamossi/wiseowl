@@ -17,6 +17,24 @@ class Materias
                                                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function GetAssuntos(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT DISTINCT assunto_assunto FROM tb_assuntos WHERE materia_assunto = (
+                                            SELECT materia_prova FROM tb_prova WHERE id_prova = :ID)",
+                                            array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function GetTopicos(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_assuntos WHERE materia_assunto = (
+                                            SELECT materia_prova FROM tb_prova WHERE id_prova = :ID)",
+                                            array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

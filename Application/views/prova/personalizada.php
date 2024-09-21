@@ -60,7 +60,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
-            <form action="/cadastro/extra/personalizada/<?php echo $data['id']."-".$data['num']?>" enctype="multipart/form-data" method="POST">
+            <form action="/cadastro/extra/personalizada/<?php echo $data['id']?>" enctype="multipart/form-data" method="POST">
                 <div class="inp">
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"></textarea>

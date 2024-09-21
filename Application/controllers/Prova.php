@@ -20,37 +20,42 @@ class Prova extends Controller
         $this->view('prova/formularioInicial', ['materias' => $materias, 'turmas' => $turmas]);
     }
 
-    public function tipoQuestao()
+    public function tipoQuestao($id = null)
     {
-        $materia = $_POST['materia'];
-        $turma = $_POST['turma'];
-        $data = $_POST['data'];
-        $notaMax = $_POST['notaMax'];
-        $notaMed = $_POST['notaMed'];
-        $obs = $_POST['obs'];
-
         $conn = $this->model('prova');
-        //$insert = $conn::AddProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
-        $insert = 2;
-        if($insert > 0){
-            //$id = $conn::GetIdProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
-            $id = "1";
-            $num = 1;
-            $this->view('prova/tipoQuestao', ['id' => $id, 'num' => $num]);
-        } else {
-            $msg = "<script>Houve um erro. Tente Novamente!</script>";
-            echo $msg;
-            $location = "window.location.href = '/prova/formularioInicial";
-            echo $location;
-        }
+        if(is_null($id)){
+            $materia = $_POST['materia'];
+            $turma = $_POST['turma'];
+            $data = $_POST['data'];
+            $notaMax = $_POST['notaMax'];
+            $notaMed = $_POST['notaMed'];
+            $obs = $_POST['obs'];
+    
+            $insert = $conn::AddProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
+            //$insert = 2;
+            if($insert > 0){
+
+                $id = $conn::GetIdProva($materia, $turma, $data, $notaMax, $notaMed, $obs);
+                $id = $id[0]['id_prova'];
+                //$id = "1";
+            } else {
+                $msg = "<script>Houve um erro. Tente Novamente!</script>";
+                echo $msg;
+                $location = "window.location.href = '/prova/formularioInicial";
+                echo $location;
+            }
+        } 
+        $aux = $conn::CountQuestoes($id);
+        $num = (int)$aux[0]['num_questao'] + 1;
+        $this->view('prova/tipoQuestao', ['id' => $id, 'num' => $num]);
 
     }
 
-    public function personalizada($idNum)
+    public function personalizada($id)
     {
-        $aux = explode('-',$idNum);
-        $id = $aux[0];
-        $num = $aux[1];
+        $conn = $this->model('prova');
+        $aux = $conn::CountQuestoes($id);
+        $num = (int)$aux[0]['num_questao'] + 1;
         $this->view('prova/personalizada', ['id' => $id, 'num' => $num]);
     }
 
