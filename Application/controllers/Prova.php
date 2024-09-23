@@ -59,9 +59,12 @@ class Prova extends Controller
         $this->view('prova/personalizada', ['id' => $id, 'num' => $num]);
     }
 
-    public function ia()
+    public function ia($id)
     {
-        $this->view('prova/ia');
+        $conn = $this->model('prova');
+        $aux = $conn::CountQuestoes($id);
+        $num = (int)$aux[0]['num_questao'] + 1;
+        $this->view('prova/ia', ['id' => $id, 'num' => $num]);
     }
 
     public function descritiva()

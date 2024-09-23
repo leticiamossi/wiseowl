@@ -60,7 +60,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <div class="linha">
-                <h2 class="titulo-main">Questão XX</h2>
+                <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
                 <button onclick="location.reload()" class="btn-form btn-small">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-white-btn" fill="white" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
@@ -68,34 +68,34 @@
                     </svg>
                 </button>
             </div>
-            <form action="/cadastro/extra/ia">
+            <form action="/cadastro/extra/ia/<?php echo $data['id']?>" enctype="multipart/form-data" method="POST"">
                 <div class="inp">
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"> <?php echo $data['enunciado']?></textarea>
                 </div>
-                <input type="file" id="fileInput" accept="image/*">
+                <input type="file" id="fileInput" accept="image/*" name="fileInput">
                 <div id="output">
                     <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-a">a) </label>
-                    <input type="text" id="resp-a" value="<?php echo $data['a']?>">
+                    <input type="text" id="resp-a" name="resp-a" value="<?php echo $data['a']?>">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-b">b) </label>
-                    <input type="text" id="resp-b" value="<?php echo $data['b']?>">
+                    <input type="text" id="resp-b" name="resp-b" value="<?php echo $data['b']?>">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-c">c) </label>
-                    <input type="text" id="resp-c" value="<?php echo $data['c']?>">
+                    <input type="text" id="resp-c" name="resp-c" value="<?php echo $data['c']?>">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-d">d) </label>
-                    <input type="text" id="resp-d" value="<?php echo $data['d']?>">
+                    <input type="text" id="resp-d" name="resp-d" value="<?php echo $data['d']?>">
                 </div>
                 <div class="inp inp-row">
                     <label for="resp-e">e) </label>
-                    <input type="text" id="resp-e" value="<?php echo $data['e']?>">
+                    <input type="text" id="resp-e" name="resp-e" value="<?php echo $data['e']?>">
                 </div>
                 <div class="inp inp-row">
                     <label for="correta">Correta </label>

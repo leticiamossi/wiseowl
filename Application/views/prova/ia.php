@@ -59,8 +59,8 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Questão XX</h2>
-            <form action="/ia/gerar" method="POST">
+            <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
+            <form action="/ia/gerar/<?php echo $data['id']?>" method="POST">
                 <div class="inp">
                     <label for="assunto">Assunto</label>
                     <input type="text" id="assunto" name="assunto">

@@ -4,8 +4,12 @@ use Application\core\Controller;
 
 class Ia extends Controller
 {
-    public function gerar()
+    public function gerar($id)
     {
+        $conn = $this->model('prova');
+        $aux = $conn::CountQuestoes($id);
+        $num = (int)$aux[0]['num_questao'] + 1;
+
         $assunto = $_POST['assunto'];
         $tamanho = $_POST['tamanho'];
         switch ($tamanho) {
@@ -62,6 +66,6 @@ class Ia extends Controller
                 $correta = $jsonQuestao->correta;
             }
         }
-        $this->view('ia/gerar', ['enunciado' => $enunciado, 'a' => $a, 'b' => $b, 'c' => $c, 'd' => $d, 'e' => $e, 'correta' => $correta]);
+        $this->view('ia/gerar', ['enunciado' => $enunciado, 'a' => $a, 'b' => $b, 'c' => $c, 'd' => $d, 'e' => $e, 'correta' => $correta, 'id' => $id, 'num' => $num]);
     }
 }
