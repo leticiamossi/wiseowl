@@ -109,6 +109,7 @@
                     <label for="peso">Peso da Questão</label>
                     <input type="number" value="1" id="peso" name="peso" required>
                 </div>
+                <input type="hidden" name="tipo" value="<?php if(!empty($data['tipo'])) {echo "Desc"; } else { echo "Obj";} ?>">
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
                 <button class="btn-form" formaction="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ']."/end"?>" formmethod="POST">Finalizar</button>
             </form>

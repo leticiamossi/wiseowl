@@ -16,10 +16,27 @@ class Questao
         return $result->rowCount();
     }
 
+    public static function AddQuestaoDesc(string $enunciado, string $arquivoNovo, string $modeloResp, string $tamanho) 
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("INSERT INTO tb_questaoDesc(questao_questaoDesc, imagem_questaoDesc, modeloResp_questaoDesc, tamanho_questaoDesc) 
+                                                    VALUES (:ENU, :IMG, :MOD, :TAM)",
+                                                    array(':ENU' => $enunciado, ':IMG' => $arquivoNovo, ':MOD' => $modeloResp, ':TAM' => $tamanho));
+        return $result->rowCount();
+    }
+
     public static function AddExtras(string $id, string $assunto, string $dificuldade)
     {
         $conn = new Database();
         $result = $conn->executeQuery("UPDATE tb_questoesObj SET assunto_questao = :ASS, dificuldade_questao = :DIF WHERE id_questao = :ID",
+                                        array(':ASS' => $assunto, ':DIF' => $dificuldade, ':ID' => $id));
+        return $result->rowCount();
+    }
+
+    public static function AddExtrasDesc(string $id, string $assunto, string $dificuldade)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("UPDATE tb_questaoDesc SET assunto_questaoDesc = :ASS, dificuldade_questaoDesc = :DIF WHERE id_questaoDesc = :ID",
                                         array(':ASS' => $assunto, ':DIF' => $dificuldade, ':ID' => $id));
         return $result->rowCount();
     }
@@ -39,6 +56,17 @@ class Questao
                                                                                 adicionadaPor_questao = :PROF &&
                                                                                 origem_questao = :ORIG",
                                                     array(':ENU' => $enunciado, ':IMG' => $imagem, ':A' => $a, ':B' => $b, ':C' => $c, ':D' => $d, ':E' => $e, ':CER' => $certa, ':TAM' => $tamanho, ':PROF' => $prof, ':ORIG' => $origem));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function GetIdQuestaoDesc(string $enunciado, string $imagem, string $modeloResp, string $tamanho)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT id_questaoDesc AS id_questao FROM tb_questaoDesc WHERE questao_questaoDesc = :ENU &&
+                                                                                imagem_questaoDesc = :IMG &&
+                                                                                modeloResp_questaoDesc = :MOD &&
+                                                                                tamanho_questaoDesc = :TAM",
+                                                    array(':ENU' => $enunciado, ':IMG' => $imagem, ':MOD' => $modeloResp,':TAM' => $tamanho));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 

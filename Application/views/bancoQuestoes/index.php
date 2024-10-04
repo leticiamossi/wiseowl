@@ -187,10 +187,6 @@
                                 <p class="card-destaque">Origem: ${questao.origem_questao}</p>  
                             </div>
                             <form method="POST" class="inp-linha" action="/cadastro/extra/banco/<?php echo $data['id']?>">
-                                <div class="inp">
-                                    <label>Peso</label>
-                                    <input type="number" name="peso-${questao.id_questao}" id="inp-peq" value="1"/>
-                                </div>
                                 <button type="submit" value="${questao.id_questao}" name="id" class="btn-card">Adicionar</button>
                             </form>
                         </div>

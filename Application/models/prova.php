@@ -24,6 +24,14 @@ class Prova
         return $result->rowCount();
     }
 
+    public static function AddQuestaoDesc(string $idProva, string $idQuestao, string $peso)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("INSERT INTO tb_questoesProva(prova_questaoProva,questaoDesc_questaoProva,peso_questaoProva)
+                                        VALUES (:PROVA, :QUESTAO, :PESO)", array(':PROVA' => $idProva, ':QUESTAO' => $idQuestao, ':PESO' => $peso));
+        return $result->rowCount();
+    }
+
     public static function GetIdProva(string $materia, string $turma, string $data, string $notaMax, string $notaMed, string $obs)
     {
         $conn = new Database();
