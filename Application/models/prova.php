@@ -44,6 +44,14 @@ class Prova
                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function GetMateria(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT materia_prova FROM tb_prova WHERE id_prova = :ID",
+                                        array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

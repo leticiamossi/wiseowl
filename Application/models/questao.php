@@ -41,6 +41,14 @@ class Questao
                                                     array(':ENU' => $enunciado, ':IMG' => $imagem, ':A' => $a, ':B' => $b, ':C' => $c, ':D' => $d, ':E' => $e, ':CER' => $certa, ':TAM' => $tamanho, ':PROF' => $prof, ':ORIG' => $origem));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function GetQuestao(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_questoesObj WHERE id_questao = :ID",
+                                        array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

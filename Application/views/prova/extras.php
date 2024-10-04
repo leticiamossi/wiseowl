@@ -62,7 +62,8 @@
             <div class="linha">
                 <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
             </div>
-            <form action="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ'][0]['id_questao']?>" method="POST">
+            <form action="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ']?>" method="POST">
+            <?php if(empty($data['questao'])){ ?>
                 <div class="inp">
                     <label for="assunto">Assunto</label>
                     <select name="assunto" id="assunto" onchange="GetAssunto()" required>
@@ -74,7 +75,7 @@
                 </div>
                 <div class="inp">
                     <label for="topico">Tópico Específico</label>
-                    <select name="topico" id="topico" req4>
+                    <select name="topico" id="topico" required>
                         <option disabled selected value="">Selecione um tópico</option>
                     </select>
                 </div> 
@@ -103,12 +104,13 @@
                         <option value="3">Difícil</option>
                     </select>
                 </div>
+            <?php } ?>
                 <div class="inp">
                     <label for="peso">Peso da Questão</label>
                     <input type="number" value="1" id="peso" name="peso" required>
                 </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
-                <button class="btn-form" formaction="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ'][0]['id_questao']."/end"?>" formmethod="POST">Finalizar</button>
+                <button class="btn-form" formaction="/cadastro/questaoProva/<?php echo $data['id']."/".$data['idQ']."/end"?>" formmethod="POST">Finalizar</button>
             </form>
         </div>
     </main>
