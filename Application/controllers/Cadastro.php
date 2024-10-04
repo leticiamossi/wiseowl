@@ -20,6 +20,8 @@ class Cadastro extends Controller
             }
         } else {
 
+            $prof = "1";
+
             $connMat = $this->model('materias');
             $assuntos = $connMat::GetAssuntos($id);
             $topicos = $connMat::GetTopicos($id);
@@ -46,6 +48,17 @@ class Cadastro extends Controller
 
             $tamanho = strlen(trim($enunciado));
             if ($tipo == "descritiva") {
+                $modeloResp = $_POST['modeloResp'];
+
+                $conn = $this->model('questao');
+                $insert = $conn::AddQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
+
+                if ($insert > 0) {
+                    $idQ = $conn::GetIdQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
+                    //$idQ = 1;
+                    $idQ = $idQ[0]['id_questao'];
+                    $this->view('prova/extras', ['id' => $id, 'num' => $num, 'idQ' => $idQ, 'assuntos' => $assuntos, 'topicos' => $topicos, 'tipo' => $tipo]);
+                }
             } else {
                 $a = $_POST['resp-a'];
                 $b = $_POST['resp-b'];
@@ -71,8 +84,6 @@ class Cadastro extends Controller
                         break;
                 }
 
-                $prof = "1";
-
                 if ($tipo == "personalizada") {
                     $origem = "Escrita";
                 } elseif ($tipo == "ia") {
@@ -94,18 +105,27 @@ class Cadastro extends Controller
 
     public function questaoProva($id, $idQ, $end = null)
     {
+        $tipo = $_POST['tipo'];
         if (isset($_POST['dificuldade']) && isset($_POST['topico'])) {
             $assunto = $_POST['topico'];
             $dificuldade = $_POST['dificuldade'];
 
             $connQ = $this->model('questao');
-            $insert = $connQ::AddExtras($idQ, $assunto, $dificuldade);
+            if($tipo == "Obj"){
+                $insert = $connQ::AddExtras($idQ, $assunto, $dificuldade);
+            } else {
+                $insert = $connQ::AddExtrasDesc($idQ, $assunto, $dificuldade);
+            }
         }
 
         $peso = $_POST['peso'];
 
         $connP = $this->model('prova');
-        $insert2 = $connP::AddQuestaoObj($id, $idQ, $peso);
+        if($tipo == "Obj"){
+            $insert2 = $connP::AddQuestaoObj($id, $idQ, $peso);
+        } else {
+            $insert2 = $connP::AddQuestaoDesc($id, $idQ, $peso);
+        }
         if ($insert2 > 0) {
             if (is_null($end)) {
                 header("Location: /prova/tipoQuestao/$id");
