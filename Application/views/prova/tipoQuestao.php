@@ -60,7 +60,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
-            <a href="/prova/banco/<?php echo $data['id']?>" class="btn-a">
+            <a href="/banco/questoes/<?php echo $data['id']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down-right" viewBox="0 0 16 16">

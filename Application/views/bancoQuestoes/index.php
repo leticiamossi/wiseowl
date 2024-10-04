@@ -177,6 +177,7 @@
                     <article class="card-questao">
                         <div class="card-body">
                             <h4 class="card-title">${questao.questao_questao}</h4>
+                            <img src="../../public/assets/img/questoes/${questao.imagem_questao}" width="500px" onerror="this.style.display = 'none'"/>
                             <p>a) ${questao.respostaUm_questao}</p>
                             <p>b) ${questao.respostaDois_questao}</p>
                             <p>c) ${questao.respostaTres_questao}</p>
