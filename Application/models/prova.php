@@ -7,6 +7,15 @@ use PDO;
 
 class Prova
 {
+    public static function GetProvas(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_prova AS p JOIN tb_turmas AS t ON p.turma_prova = t.id_turma 
+                                                                    JOIN tb_materias AS m ON m.id_materia = p.materia_prova
+                                                                    WHERE t.professor_turma = :ID", array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function AddProva(string $materia, string $turma, string $data, string $notaMax, string $notaMed, string $obs)
     {
         $conn = new Database();

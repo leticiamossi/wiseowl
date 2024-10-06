@@ -6,7 +6,10 @@ class Prova extends Controller
 {
     public function index()
     {
-        $this->view('prova/index');
+        $id = 1;
+        $conn = $this->model('prova');
+        $provas = $conn::GetProvas($id);
+        $this->view('prova/index', ['provas' => $provas]);
     }
 
     public function formularioInicial()
@@ -73,6 +76,11 @@ class Prova extends Controller
         $aux = $conn::CountQuestoes($id);
         $num = (int)$aux[0]['num_questao'] + 1;
         $this->view('prova/descritiva', ['id' => $id, 'num' => $num]);
+    }
+
+    public function opcoes($id)
+    {
+        $this->view('prova/opcoes');
     }
 }
 

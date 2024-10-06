@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../../public/assets/css/Prova/style.css">
 </head>
 
-<body>
+<body onload="filtrar()">
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
         <nav>
@@ -72,8 +72,107 @@
                     </div>
                 </div>
             </a>
+            <div>
+                <h3 class="titulo-main">Minhas Provas</h3>
+                <div class="filtro-linha">
+                    <div class="inp">
+                        <input type="month" name="data" id="data" onchange="filtrar()">
+                    </div>
+                    <select name="status" id="status" onchange="filtrar()">
+                        <option>Todos</option>
+                        <option>Com resultados</option>
+                        <option>Sem resultados</option>
+                    </select>
+                    <select name="turma" id="turma" onchange="filtrar()">
+                        <option>Todos</option>
+                        <option value="1">3A</option>
+                        <option value="2">3B</option>
+                    </select>
+                </div>
+                <section class="main-provas" id="provas">
+
+                    <table class="table-main">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Matéria</th>
+                                <th>Resultados</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-provas">
+
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </div>
     </main>
+    <script>
+        function filtrar() {
+            var data = document.getElementById('data').value;
+            var status = document.getElementById('status').value;
+            var turma = document.getElementById('turma').value;
+
+            var json = JSON.parse('<?= json_encode($data['provas'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
+            console.log(json)
+            const cardProva = document.querySelector('#lista-provas');
+            cardProva.innerHTML = ''
+
+            if(data != '') {
+                json = json.filter(p => p.data_prova.substr(0, 7) == data)
+            }
+            if (turma != "Todos") {
+                json = json.filter(p => p.turma_prova == turma)
+            } 
+
+            json.forEach((prova, index) => {
+                // Create a row for basic info
+                let row = document.createElement("tr");
+                row.id = `main-row-${index}`;
+                row.classList.add("main-row");
+                row.innerHTML = `
+                <td>${prova.data_prova}</td>
+                <td>${prova.nome_materia} - ${prova.nome_turma}</td>
+                <td></td>
+                <td><a href="/prova/opcoes/${prova.id_prova}" class="btn btn-row">Opções</a></td>
+            `;
+
+                // Add a click event to expand the row
+                row.addEventListener("click", function() {
+                    let detailsRow = document.getElementById(`details-${index}`);
+                    let mainRow = document.getElementById(`main-row-${index}`);
+
+                    detailsRow.classList.toggle("expanded");
+                    mainRow.classList.toggle("row-active")
+
+                });
+
+                // Create a hidden row for details
+                let detailsRow = document.createElement("tr");
+                detailsRow.id = `details-${index}`;
+                detailsRow.classList.add("details");
+                detailsRow.innerHTML = `
+                <td colspan="4">TESTE</canvas></td>
+            `;
+
+                // Append both rows to the table
+                cardProva.appendChild(row);
+                cardProva.appendChild(detailsRow);
+            })
+
+        }
+    </script>
+    <script>
+        document.querySelectorAll('tr.expansivel').forEach(row => {
+            row.addEventListener('click', () => {
+                const nextRow = row.nextElementSibling;
+                if (nextRow && nextRow.classList.contains('detalhes')) {
+                    nextRow.style.display = nextRow.style.display === 'table-row' ? 'none' : 'table-row';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
