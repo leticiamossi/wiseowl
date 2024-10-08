@@ -46,7 +46,7 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa">
-            <a href="/pdf/gerar" class="btn-a">
+            <a href="/pdf/gerar/<?php echo $data['id']?>" class="btn-a">
                 <div class="btn-main">
                     <div class="btn-icon">
                         <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">

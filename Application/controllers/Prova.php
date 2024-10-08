@@ -80,7 +80,7 @@ class Prova extends Controller
 
     public function opcoes($id)
     {
-        $this->view('prova/opcoes');
+        $this->view('prova/opcoes', ['id' => $id]);
     }
 }
 

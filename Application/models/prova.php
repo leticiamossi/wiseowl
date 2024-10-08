@@ -69,6 +69,16 @@ class Prova
                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function GetQuestoes(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_questoesProva AS qp LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                            LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc 
+                                                                            WHERE qp.prova_questaoProva = :ID
+                                                                            ORDER BY qp.id_questaoProva", array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
