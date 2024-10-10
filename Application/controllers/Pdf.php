@@ -8,7 +8,13 @@ class Pdf extends Controller
     {
         $connP = $this->model('prova');
         $questoes = $connP::GetQuestoes($id);
-        $this->view('pdf/gerar', ['questoes' => $questoes]);
+        $questoesValidas = [];
+        foreach($questoes as $questao){
+            if($questao['status_questaoProva'] != "Anulada"){
+                array_push($questoesValidas, $questao);
+            }
+        }
+        $this->view('pdf/gerar', ['questoes' => $questoesValidas]);
     }
 }
 

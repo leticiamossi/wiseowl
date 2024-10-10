@@ -57,7 +57,7 @@ class Prova
     public static function CountQuestoes(string $id)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesProva WHERE prova_questaoProva = :ID",
+        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesProva WHERE prova_questaoProva = :ID && status_questaoProva = null",
                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -75,9 +75,16 @@ class Prova
         $conn = new Database();
         $result = $conn->executeQuery("SELECT * FROM tb_questoesProva AS qp LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
                                                                             LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc 
-                                                                            WHERE qp.prova_questaoProva = :ID
+                                                                            WHERE qp.prova_questaoProva = :ID 
                                                                             ORDER BY qp.id_questaoProva", array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function AnularQuestao(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("UPDATE tb_questoesProva SET status_questaoProva = 'Anulada' WHERE id_questaoProva = :ID", array(':ID' => $id));
+        $result->rowCount();
     }
 }
 

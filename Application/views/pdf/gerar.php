@@ -69,7 +69,7 @@
                 <tbody>
                     <tr>
                         <td rowspan="3" width="150px">
-                            <img src="/public/assets/img/logo/logo-fundobranco.jpeg" width="150px">
+                            <img src="../../public/assets/img/logo-escola/logo-header.png" width="150px">
                         </td>
                         <td colspan="4" style="position: relative;">
                             <h5 style="top: 0; position: absolute;">Aluno</h5>

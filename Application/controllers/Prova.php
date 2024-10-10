@@ -80,7 +80,18 @@ class Prova extends Controller
 
     public function opcoes($id)
     {
-        $this->view('prova/opcoes', ['id' => $id]);
+        $connP = $this->model('prova');
+        $questoes = $connP::GetQuestoes($id);
+        $this->view('prova/opcoes', ['id' => $id, 'questoes' => $questoes]);
+    }
+
+    public function anular($id, $idP)
+    {
+        $connP = $this->model('prova');
+        $update = $connP::AnularQuestao($idP);
+
+        header("Location: /prova/opcoes/$id");
+        
     }
 }
 

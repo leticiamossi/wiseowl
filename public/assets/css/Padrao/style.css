@@ -152,6 +152,11 @@
     align-self: flex-end;
 }
 
+.btn-card:hover {
+    background: #bd93db;
+    cursor: pointer;
+}
+
 .btn-row {
     color: #5B009B;
     background: #91CD93;
