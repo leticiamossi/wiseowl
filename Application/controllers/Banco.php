@@ -6,7 +6,6 @@ class Banco extends Controller
 {
     public function questoes($id)
     {
-        $id = 16;
         $connP = $this->model('prova');
         $aux = $connP::CountQuestoes($id);
         $num = (int)$aux[0]['num_questao'] + 1;

@@ -52,10 +52,10 @@ class Cadastro extends Controller
 
                 $conn = $this->model('questao');
                 $insert = $conn::AddQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
-
                 if ($insert > 0) {
                     $idQ = $conn::GetIdQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
                     //$idQ = 1;
+
                     $idQ = $idQ[0]['id_questao'];
                     $this->view('prova/extras', ['id' => $id, 'num' => $num, 'idQ' => $idQ, 'assuntos' => $assuntos, 'topicos' => $topicos, 'tipo' => $tipo]);
                 }
@@ -96,6 +96,7 @@ class Cadastro extends Controller
                 if ($insert > 0) {
                     $idQ = $conn::GetIdQuestao($enunciado, $arquivoNovo, $a, $b, $c, $d, $e, $correta, $tamanho, $prof, $origem);
                     //$idQ = 1;
+        
                     $idQ = $idQ[0]['id_questao'];
                     $this->view('prova/extras', ['id' => $id, 'num' => $num, 'idQ' => $idQ, 'assuntos' => $assuntos, 'topicos' => $topicos]);
                 }
