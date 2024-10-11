@@ -135,4 +135,26 @@ class Cadastro extends Controller
             }
         }
     }
+
+    public function turma()
+    {
+        $nome = $_POST['nome'];
+        $ano = date('Y');
+        $id = 1;
+
+        $conn = $this->model('turmas');
+        $insert = $conn::InsertTurma($nome, $ano, $id);
+        header("Location: /aluno/index");
+    }
+
+    public function aluno()
+    {
+        $nome = $_POST['nome'];
+        $sobrenome = $_POST['sobrenome'];
+        $turma = $_POST['turma'];
+
+        $conn = $this->model('aluno');
+        $insert = $conn::InsertAluno($nome, $sobrenome, $turma);
+        header("Location: /aluno/index");
+    }
 }
