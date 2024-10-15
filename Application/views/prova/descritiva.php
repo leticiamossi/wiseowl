@@ -73,6 +73,10 @@
                     <label for="modeloResp">Modelo de Resposta:</label>
                     <textarea name="modeloResp" id="modeloResp"></textarea>
                 </div>
+                <div class="inp">
+                    <label for="linhas">Quantidade de Linhas</label>
+                    <input type="number" name="linhas" id="linhas" min="1"/>
+                </div>
                 <input class="btn-form btn-sec" type="submit" value="Próxima">
             </form>
         </div>
