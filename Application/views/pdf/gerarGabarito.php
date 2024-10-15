@@ -147,7 +147,24 @@
                 foreach($data['questoes'] as $questao) { 
                     if($questao['questao_questao'] != null)
                     {
-                        $td = "";
+                        $aux = $questao['respostaCerta_questao'];
+                        switch($aux){
+                            case 'respostaUm_questao':
+                                $td = "A";
+                                break;
+                            case 'respostaDois_questao':
+                                $td = "B";
+                                break;
+                            case 'respostaTres_questao':
+                                $td = "C";
+                                break;
+                            case 'respostaQuatro_questao':
+                                $td = "D";
+                                break;
+                            case 'respostaCinco_questao':
+                                $td = "E";
+                                break;
+                        }
                     } else {
                         $td = "Desc";
                     }
@@ -164,24 +181,27 @@
             $cont = 1;
             foreach ($data['questoes'] as $questao) {
                 if ($questao['questao_questao'] != null) {
+                    $num = $questao['id_questao'];
                     echo "<p>" . $cont . ") " . $questao['questao_questao'] . "</p>";
                     if ($questao['imagem_questao'] != null) {
                         echo "<img src='../../public/assets/img/questoes/" . $questao['imagem_questao'] . "' width='500px'/>";
                     }
-                    echo "<p>" . "a) " . $questao['respostaUm_questao'] . "</p>";
-                    echo "<p>" . "b) " . $questao['respostaDois_questao'] . "</p>";
-                    echo "<p>" . "c) " . $questao['respostaTres_questao'] . "</p>";
-                    echo "<p>" . "d) " . $questao['respostaQuatro_questao'] . "</p>";
-                    echo "<p>" . "e) " . $questao['respostaCinco_questao'] . "</p>";
+                    echo "<p id='respostaUm_questao$num'>" . "a) " . $questao['respostaUm_questao'] . "</p>";
+                    echo "<p id='respostaDois_questao$num'>" . "b) " . $questao['respostaDois_questao'] . "</p>";
+                    echo "<p id='respostaTres_questao$num'>" . "c) " . $questao['respostaTres_questao'] . "</p>";
+                    echo "<p id='respostaQuatro_questao$num'>" . "d) " . $questao['respostaQuatro_questao'] . "</p>";
+                    echo "<p id='respostaCinco_questao$num'>" . "e) " . $questao['respostaCinco_questao'] . "</p>";
+                    $certa = $questao['respostaCerta_questao'];
+                    echo "<style>#$certa$num { font-weight: bold}</style>";
                     echo "<br><br>";
                 } else {
                     echo "<p>" . $cont . ") " . $questao['questao_questaoDesc'] . "</p>";
                     if ($questao['imagem_questaoDesc'] != null) {
                         echo "<img src='../../public/assets/img/questoes/" . $questao['imagem_questaoDesc'] . "' width='500px'/>";
                     }
-                    for ($i = 0; $i < $questao['numLinhas_questaoDesc']; $i++) {
-                        echo "<p>____________________________________________________________________________________</p>";
-                    }
+
+                    echo "<br>";
+                    echo "R.: ".$questao['modeloResp_questaoDesc'];
                     echo "<br><br>";
                 }
                 $cont++;
@@ -193,7 +213,7 @@
 
                 var element = document.getElementById('prova');
                 var opt = {
-                    filename: 'prova.pdf',
+                    filename: 'prova-GABARITO.pdf',
                     image: {
                         type: 'jpeg',
                         quality: 1
