@@ -16,12 +16,12 @@ class Questao
         return $result->rowCount();
     }
 
-    public static function AddQuestaoDesc(string $enunciado, string $arquivoNovo, string $modeloResp, string $tamanho) 
+    public static function AddQuestaoDesc(string $enunciado, string $arquivoNovo, string $modeloResp, string $tamanho, string $linhas) 
     {
         $conn = new Database();
-        $result = $conn->executeQuery("INSERT INTO tb_questaoDesc(questao_questaoDesc, imagem_questaoDesc, modeloResp_questaoDesc, tamanho_questaoDesc) 
-                                                    VALUES (:ENU, :IMG, :MOD, :TAM)",
-                                                    array(':ENU' => $enunciado, ':IMG' => $arquivoNovo, ':MOD' => $modeloResp, ':TAM' => $tamanho));
+        $result = $conn->executeQuery("INSERT INTO tb_questaoDesc(questao_questaoDesc, imagem_questaoDesc, modeloResp_questaoDesc, tamanho_questaoDesc, numLinhas_questaoDesc) 
+                                                    VALUES (:ENU, :IMG, :MOD, :TAM, :LIN)",
+                                                    array(':ENU' => $enunciado, ':IMG' => $arquivoNovo, ':MOD' => $modeloResp, ':TAM' => $tamanho, ':LIN' => $linhas));
         return $result->rowCount();
     }
 
@@ -59,14 +59,15 @@ class Questao
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function GetIdQuestaoDesc(string $enunciado, string $imagem, string $modeloResp, string $tamanho)
+    public static function GetIdQuestaoDesc(string $enunciado, string $imagem, string $modeloResp, string $tamanho, string $linhas)
     {
         $conn = new Database();
         $result = $conn->executeQuery("SELECT id_questaoDesc AS id_questao FROM tb_questaoDesc WHERE questao_questaoDesc = :ENU &&
                                                                                 imagem_questaoDesc = :IMG &&
                                                                                 modeloResp_questaoDesc = :MOD &&
-                                                                                tamanho_questaoDesc = :TAM",
-                                                    array(':ENU' => $enunciado, ':IMG' => $imagem, ':MOD' => $modeloResp,':TAM' => $tamanho));
+                                                                                tamanho_questaoDesc = :TAM &&
+                                                                                numLinhas_questaoDesc = :LIN",
+                                                    array(':ENU' => $enunciado, ':IMG' => $imagem, ':MOD' => $modeloResp,':TAM' => $tamanho, ':LIN' => $linhas));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 

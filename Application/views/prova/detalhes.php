@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../../public/assets/css/Home/style.css">
 </head>
 
-<body>
+<body onload="filtrar()">
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
         <nav>
@@ -71,96 +71,117 @@
                     </div>
                 </div>
             </a>
-
-            <h3 class="titulo-main">Questões da Prova</h3>
-
-            <section class="main-questoes" id="questoes">
-                <div class="container">
-                    <div class="" id="lista-questoes">
-                        <!--Inserido dinamicamente com JS-->
+            <a href="/pdf/gerarGabarito/<?php echo $data['id'] ?>" class="btn-a">
+                <div class="btn-main">
+                    <div class="btn-icon">
+                        <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+                            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                        </svg>
+                    </div>
+                    <div class="btn-body">
+                        <p>Gerar PDF (gabarito)</p>
                     </div>
                 </div>
+            </a>
+            <a href="/prova/questoes/<?php echo $data['id'] ?>" class="btn-a">
+                <div class="btn-main">
+                    <div class="btn-icon">
+                        <svg class="icon-roxo" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list-ol" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5" />
+                            <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635z" />
+                        </svg>
+                    </div>
+                    <div class="btn-body">
+                        <p>Questões</p>
+                    </div>
+                </div>
+            </a>
+
+            <h3 class="titulo-main">Visao Geral</h3>
+
+            <h3 class="titulo-main">Alunos</h3>
+            <section class="main-provas" id="provas">
+                <table class="table-main">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Resultados</th>
+                            <th>Nota</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="relatorio">
+
+                    </tbody>
+                </table>
             </section>
         </div>
     </main>
     <script>
-        var json = JSON.parse('<?= json_encode($data['questoes'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
-        console.log(json)
-        const cardQuestao = document.querySelector('#lista-questoes');
-        cardQuestao.innerHTML = ''
+        function filtrar() {
+            // var data = document.getElementById('data').value;
+            // var status = document.getElementById('status').value;
+            // var turma = document.getElementById('turma').value;
 
-        json.forEach(questao => {
-            var status = "";
-            var btn = ""
-            if (questao.status_questaoProva == null) {
-                status = "style='opacity: 1'";
-                btn = "style='display: block'";
-            } else {
-                status = "style='opacity: .5'";
-                btn = "style='display: none'";
-            }
+            var json = JSON.parse('<?= json_encode($data['alunos'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
+            console.log(json)
+            const cardAluno = document.querySelector('#relatorio');
+            cardAluno.innerHTML = ''
 
-            if (questao.questao_questao != null) {
-                var certa = "";
-                switch (questao.respostaCerta_questao) {
-                    case "respostaUm_questao":
-                        certa = 'a';
-                        break;
-                    case "respostaDois_questao":
-                        certa = 'b';
-                        break;
-                    case "respostaTres_questao":
-                        certa = 'c';
-                        break;
-                    case "respostaQuatro_questao":
-                        certa = 'd';
-                        break;
-                    case "respostaCinco_questao":
-                        certa = 'e';
-                        break;
-                }
+            // if(data != '') {
+            //     json = json.filter(p => p.data_prova.substr(0, 7) == data)
+            // }
+            // if (turma != "Todos") {
+            //     json = json.filter(p => p.turma_prova == turma)
+            // } 
 
-                cardQuestao.innerHTML += `
-                    <article class="card-questao" ${status}>
-                        <div class="card-body">
-                            <h4 class="card-title">${questao.questao_questao}</h4>
-                            <img src="../../public/assets/img/questoes/${questao.imagem_questao}" width="500px" onerror="this.style.display = 'none'"/>
-                            <p>a) ${questao.respostaUm_questao}</p>
-                            <p>b) ${questao.respostaDois_questao}</p>
-                            <p>c) ${questao.respostaTres_questao}</p>
-                            <p>d) ${questao.respostaQuatro_questao}</p>
-                            <p>e) ${questao.respostaCinco_questao}</p>
-                            <div class="linha">
-                                <p class="card-destaque">Resposta: ${certa}</p>  
-                                <p class="card-destaque">Origem: ${questao.origem_questao}</p>  
-                            </div>
-                            
-                                <button name="id" class="btn-card" ${btn} onclick="Anular(${questao.id_questaoProva})">Anular</button>
-                            
-                        </div>
-                    </article>
-                    `
-            } else {
-                cardQuestao.innerHTML += `
-                    <article class="card-questao" ${status}>
-                        <div class="card-body">
-                            <h4 class="card-title">${questao.questao_questaoDesc}</h4>
-                            <img src="../../public/assets/img/questoes/${questao.imagem_questaoDesc}" width="500px" onerror="this.style.display = 'none'"/>
-                                <button name="id" class="btn-card" ${btn} onclick="Anular(${questao.id_questaoProva})">Anular</button>
-                        </div>
-                    </article>
-                    `
-            }
+            json.forEach((aluno, index) => {
+                // Create a row for basic info
+                let row = document.createElement("tr");
+                row.id = `main-row-${index}`;
+                row.classList.add("main-row");
+                row.innerHTML = `
+                <td>${aluno.nome_aluno}</td>
+                <td></td>
+                <td></td>
+                <td><a href="/gabarito/inserir/${aluno.id_prova}/${aluno.id_aluno}" class="btn btn-row">Inserir Gabarito</a></td>
+            `;
 
-        })
+                // Add a click event to expand the row
+                row.addEventListener("click", function() {
+                    let detailsRow = document.getElementById(`details-${index}`);
+                    let mainRow = document.getElementById(`main-row-${index}`);
+
+                    detailsRow.classList.toggle("expanded");
+                    mainRow.classList.toggle("row-active")
+
+                });
+
+                // Create a hidden row for details
+                let detailsRow = document.createElement("tr");
+                detailsRow.id = `details-${index}`;
+                detailsRow.classList.add("details");
+                detailsRow.innerHTML = `
+                <td colspan="4">TESTE</canvas></td>
+            `;
+
+                // Append both rows to the table
+                cardAluno.appendChild(row);
+                cardAluno.appendChild(detailsRow);
+            })
+
+        }
     </script>
     <script>
-        function Anular(id) {
-            var anular = confirm("Está ação não poderá ser revertida. Deseja anular está questão? ")
-            if(anular){
-                window.location.href = "/prova/anular/<?php echo $data['id']?>/" + id;
-            }
-        }
+        document.querySelectorAll('tr.expansivel').forEach(row => {
+            row.addEventListener('click', () => {
+                const nextRow = row.nextElementSibling;
+                if (nextRow && nextRow.classList.contains('detalhes')) {
+                    nextRow.style.display = nextRow.style.display === 'table-row' ? 'none' : 'table-row';
+                }
+            });
+        });
     </script>
 </body>
 

@@ -135,7 +135,7 @@
                 <td>${prova.data_prova}</td>
                 <td>${prova.nome_materia} - ${prova.nome_turma}</td>
                 <td></td>
-                <td><a href="/prova/opcoes/${prova.id_prova}" class="btn btn-row">Opções</a></td>
+                <td><a href="/prova/detalhes/${prova.id_prova}" class="btn btn-row">Detalhes</a></td>
             `;
 
                 // Add a click event to expand the row

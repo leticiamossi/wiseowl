@@ -78,11 +78,18 @@ class Prova extends Controller
         $this->view('prova/descritiva', ['id' => $id, 'num' => $num]);
     }
 
-    public function opcoes($id)
+    public function detalhes($id)
+    {
+        $connA = $this->model('aluno');
+        $alunos = $connA::GetAlunosProva($id);
+        $this->view('prova/detalhes', ['id' => $id, 'alunos' => $alunos]);
+    }
+
+    public function questoes($id)
     {
         $connP = $this->model('prova');
         $questoes = $connP::GetQuestoes($id);
-        $this->view('prova/opcoes', ['id' => $id, 'questoes' => $questoes]);
+        $this->view('prova/questoes', ['id' => $id, 'questoes' => $questoes]);
     }
 
     public function anular($id, $idP)

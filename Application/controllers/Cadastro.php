@@ -49,11 +49,12 @@ class Cadastro extends Controller
             $tamanho = strlen(trim($enunciado));
             if ($tipo == "descritiva") {
                 $modeloResp = $_POST['modeloResp'];
+                $linhas = $_POST['linhas'];
 
                 $conn = $this->model('questao');
-                $insert = $conn::AddQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
+                $insert = $conn::AddQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho, $linhas);
                 if ($insert > 0) {
-                    $idQ = $conn::GetIdQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho);
+                    $idQ = $conn::GetIdQuestaoDesc($enunciado, $arquivoNovo, $modeloResp, $tamanho, $linhas);
                     //$idQ = 1;
 
                     $idQ = $idQ[0]['id_questao'];
