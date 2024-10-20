@@ -19,7 +19,12 @@
 <body>
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
-        <nav>
+        <span id="icon-menu" onclick="abrirMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+        </span>
+        <nav id="menu">
             <a href="/" class="item-nav">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512" class="icon">
                     <g>
@@ -65,7 +70,9 @@
                     <label for="enunciado">Enunciado:</label>
                     <textarea name="enunciado" id="enunciado"></textarea>
                 </div>
-                <input type="file" id="fileInput" accept="image/*" name="fileInput">
+                <div class="inp">
+                    <input type="file" id="fileInput" accept="image/*" name="fileInput">
+                </div>
                 <div id="output">
                     <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
@@ -106,6 +113,7 @@
     <!-- CompressorJS -->
     <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
     <script src="../../../public/assets/js/preview.js"></script>
+    <script src="../../public/assets/js/menu.js"></script>
 </body>
 
 </html>

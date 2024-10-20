@@ -16,6 +16,10 @@ header {
     margin-bottom: 30px;
 }
 
+#icon-menu {
+    display: none;
+}
+
 a, a:active {
     text-decoration: none;
     color: rgba(255, 255, 255, .5);
@@ -62,4 +66,48 @@ nav {
     width: 24px;
     height: 24px;
     fill: rgba(255, 255, 255, .5);
+}
+
+/* Estilos para tablets em modo retrato */
+@media screen and (max-width: 768px) {
+    header {
+        width: 100vw;
+        height: 10vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        background: #5B009B;
+        top: 10vh;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .logo {
+        width: 90px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    #icon-menu {
+        display: inline;
+        fill: #FFFFFF;
+        width: 40px;
+        height: 40px;
+    }
+
+    .item-nav {
+        padding: 10px;
+    }
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 480px) {
+    
 }

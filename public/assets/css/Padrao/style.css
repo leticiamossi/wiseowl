@@ -320,3 +320,64 @@ tr.details.expanded {
 .table-main tbody td {
     color: #5B009B;
 }
+
+/* Estilos para tablets em modo retrato */
+@media screen and (max-width: 768px) {
+    .caixa {
+        position: relative;
+        background-color: #FFFFFF;
+        width: 95vw;
+        height: calc(100vh - 12vh);
+        margin-left: 0;
+        margin-top: 0;
+        display: block;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow-y: auto;
+    }
+
+    .fundo-roxo {
+        width: 100vw;
+        height: 90vh;
+    }
+
+    .btn-body {
+        z-index: 1;
+    }
+
+    form {
+        margin: 0 20px;
+    }
+
+    .inp-linha {
+        flex-direction: column;
+    }
+
+    .inp input, textarea, select {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .inp {
+        text-align: center;
+    }
+
+    .filtro-linha select {
+        margin: 0 !important;
+    }
+    
+    .card-body img {
+        width: 50vw;
+    }
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 480px) {
+    .filtro-linha {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+    .filtro-linha .inp {
+        margin: 0;
+    }
+}

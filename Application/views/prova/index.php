@@ -19,7 +19,12 @@
 <body onload="filtrar()">
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
-        <nav>
+        <span id="icon-menu" onclick="abrirMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+        </span>
+        <nav id="menu">
             <a href="/" class="item-nav">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512" class="icon">
                     <g>
@@ -76,18 +81,25 @@
                 <h3 class="titulo-main">Minhas Provas</h3>
                 <div class="filtro-linha">
                     <div class="inp">
+                        <label for="data">Data</label>
                         <input type="month" name="data" id="data" onchange="filtrar()">
                     </div>
-                    <select name="status" id="status" onchange="filtrar()">
-                        <option>Todos</option>
-                        <option>Com resultados</option>
-                        <option>Sem resultados</option>
-                    </select>
-                    <select name="turma" id="turma" onchange="filtrar()">
-                        <option>Todos</option>
-                        <option value="1">3A</option>
-                        <option value="2">3B</option>
-                    </select>
+                    <div class="inp">
+                        <label for="status">Resultado</label>
+                        <select name="status" id="status" onchange="filtrar()">
+                            <option>Todos</option>
+                            <option>Com resultados</option>
+                            <option>Sem resultados</option>
+                        </select>
+                    </div>
+                    <div class="inp">
+                        <label for="turma">Turma</label>
+                        <select name="turma" id="turma" onchange="filtrar()">
+                            <option>Todos</option>
+                            <option value="1">3A</option>
+                            <option value="2">3B</option>
+                        </select>
+                    </div>
                 </div>
                 <section class="main-provas" id="provas">
 
@@ -119,12 +131,12 @@
             const cardProva = document.querySelector('#lista-provas');
             cardProva.innerHTML = ''
 
-            if(data != '') {
+            if (data != '') {
                 json = json.filter(p => p.data_prova.substr(0, 7) == data)
             }
             if (turma != "Todos") {
                 json = json.filter(p => p.turma_prova == turma)
-            } 
+            }
 
             json.forEach((prova, index) => {
                 // Create a row for basic info
@@ -173,6 +185,7 @@
             });
         });
     </script>
+    <script src="../../public/assets/js/menu.js"></script>
 </body>
 
 </html>
