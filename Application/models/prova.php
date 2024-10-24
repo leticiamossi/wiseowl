@@ -57,7 +57,7 @@ class Prova
     public static function CountQuestoes(string $id)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesProva WHERE prova_questaoProva = :ID && status_questaoProva is null",
+        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesProva WHERE prova_questaoProva = :ID",
                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }

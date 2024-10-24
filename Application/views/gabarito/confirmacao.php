@@ -13,10 +13,9 @@
 
     <link rel="stylesheet" href="../../../public/assets/css/Header/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/Padrao/style.css">
-    <link rel="stylesheet" href="../../../public/assets/css/Prova/style.css">
 </head>
 
-<body>
+<body onload="corrigir()">
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
         <span id="icon-menu" onclick="abrirMenu()">
@@ -64,45 +63,90 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Montar Prova</h2>
-            <form action="/prova/tipoQuestao" method="POST" class="form-prova">
-                <div class="inp">
-                    <label for="materia">Qual a matéria da prova?</label>
-                    <select name="materia" id="materia">
-                        <option disabled selected>Selecione a Matéria</option>
-                        <?php foreach ($data['materias'] as $materia) { ?>
-                            <option value="<?php echo $materia['id_materia'] ?>"><?php echo $materia['nome_materia'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="inp">
-                    <label for="turma">Para qual turma será aplicada?</label>
-                    <select name="turma" id="turma">
-                        <option disabled selected>Selecione a turma</option>
-                        <?php foreach ($data['turmas'] as $turma) { ?>
-                            <option value="<?php echo $turma['id_turma'] ?>"><?php echo $turma['nome_turma'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="inp">
-                    <label for="data">Data da aplicaçao:</label>
-                    <input type="date" name="data" id="data">
-                    <div class="inp">
-                        <label for="notaMax">Nota máxima: </label>
-                        <input type="number" name="notaMax" id="notaMax" value="10">
-                    </div>
-                    <div class="inp">
-                        <label for="notaMed">Nota média: </label>
-                        <input type="number" name="notaMed" id="notaMed" value="6">
-                    </div>
-                    <div class="inp">
-                        <label for="obs">Observaçao </label>
-                        <input type="text" name="obs" id="obs">
-                    </div>
-                    <input type="submit" value="Próximo" class="btn-form">
+            <div class="linha">
+                <h2 class="titulo-main"><?php echo $data['aluno'][0]['nome_aluno']?></h2>
+            </div>
+            <form action="/cadastro/gabarito/<?php echo $data['prova']."/".$data['IDaluno']?>" method="POST">
+            <p>Para evitar erros, confirme que as respostas do gabarito foram lidas corretamente e informe se as descritivas estao certas ou erradas. </p>
+
+            <section id="gabarito">
+
+            </section>
+            <input type="submit" class="btn-form" value="Confirmar">
             </form>
         </div>
     </main>
+    <script>
+        function corrigir(){
+            var json = JSON.parse('<?= json_encode($data['questoes'], JSON_UNESCAPED_LINE_TERMINATORS)?>');
+            var jsonResp = JSON.parse('<?= json_encode($data['respostas'], JSON_UNESCAPED_LINE_TERMINATORS)?>');
+
+            json.forEach((questao, index) => {
+                let sec = document.getElementById('gabarito');
+
+                let div = document.createElement("div");
+                div.id = `div-inp-${index}`;
+                div.classList.add("inp");
+
+                if(questao.questao_questao != null){
+                    var resposta = ''
+                    var letra = ''
+                    var cor = ''
+                    switch(jsonResp[index+1]){
+                        case 'A': 
+                            letra = 'A'
+                            break
+                        case 'B': 
+                            letra = 'B'
+                            break
+                        case 'C': 
+                            letra = 'C'
+                            break
+                        case 'D': 
+                            letra = 'D'
+                            break
+                        case 'E': 
+                            letra = 'E'
+                            break
+                    }
+
+                    if(letra === '') {
+                        cor = "rgba(255, 161, 161, .5)"
+                    } else {
+                        cor = "RGBA(187, 255, 161, .5)"
+                    }
+
+                    div.innerHTML = `
+                        <label for='resp${index}'>Questao ${index+1}</label>
+                        <input type='text' name='resp${index}' id='resp${index}' value='${letra}' style="background: ${cor}" pattern="[ABCDE]" required placeholder="A, B, C, D ou E" oninput="this.value = this.value.toUpperCase()">
+                    `
+                } else {
+                    div.innerHTML = `
+                        <label for=''>Questao ${index+1}</label>
+                        <div class='inp-linha'>
+                            <div class='inp-linha-radio'>
+                                <input type='radio' name='resp${index}' id='certa${index}' value='1' required>
+                                <label for='certa${index}'>Certa </label>
+                            </div> 
+                            <div class='inp-linha-radio'>
+                                <input type='radio' name='resp${index}' id='meio${index}' value='meio'>
+                                <label for='meio${index}'>Meio Ponto </label>
+                            </div>
+                            <div class='inp-linha-radio'>
+                                <input type='radio' name='resp${index}' id='errada${index}' value='0'>
+                                <label for='errada${index}'>Errada </label>
+                            </div>
+                        </div>
+                    `
+                }
+
+                sec.appendChild(div);
+            });
+        }
+    </script>
+    <!-- CompressorJS -->
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
+    <script src="../../../public/assets/js/preview.js"></script>
     <script src="../../public/assets/js/menu.js"></script>
 </body>
 

@@ -186,10 +186,20 @@
     margin: 0;
 }
 
+.inp-linha-radio {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.inp-linha-radio input {
+    width: fit-content !important;
+    margin: 0 !important;
+}
+
 .inp-linha {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 .inp input, textarea, select {
@@ -197,7 +207,11 @@
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     outline: none;
+}
+
+form {
     width: 500px;
+    margin: 0 auto;
 }
 
 #inp-peq {
@@ -213,10 +227,6 @@ textarea {
     align-items: center;
     gap: 10px;
     width: 450px;
-}
-
-.inp-linha input {
-    width: 230px;
 }
 
 form {
@@ -346,20 +356,13 @@ tr.details.expanded {
     }
 
     form {
-        margin: 0 20px;
-    }
-
-    .inp-linha {
-        flex-direction: column;
-    }
-
-    .inp input, textarea, select {
-        width: 300px;
+        width: 80vw;
         margin: 0 auto;
     }
 
-    .inp {
-        text-align: center;
+    .inp input, textarea, select {
+        width: -webkit-fill-available;
+        margin: 0 auto;
     }
 
     .filtro-linha select {

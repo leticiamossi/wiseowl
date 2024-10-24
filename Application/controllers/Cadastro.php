@@ -158,4 +158,53 @@ class Cadastro extends Controller
         $insert = $conn::InsertAluno($nome, $sobrenome, $turma);
         header("Location: /aluno/index");
     }
+
+    public function gabarito($idProva, $idAluno)
+    {
+        $connP = $this->model('prova');
+        $count = $connP::countQuestoes($idProva);
+        $count = $count[0]['num_questao'];
+        
+        $respostas = [];
+        for($i = 0; $i < $count; $i++) {
+            $aux = "resp".$i;
+            $resp = $_POST[$aux];
+            switch($resp){
+                case 'A': 
+                    $resp = "respostaUm_questao";
+                    break;
+                case 'B': 
+                    $resp = "respostaDois_questao";
+                    break;
+                case 'C': 
+                    $resp = "respostaTres_questao";
+                    break;
+                case 'D': 
+                    $resp = "respostaQuatro_questao";
+                    break;
+                case 'E': 
+                    $resp = "respostaCinco_questao";
+                    break;
+            }
+            $respostas[$i+1] = $resp;
+
+        }
+        
+        $questoes = $connP::GetQuestoes($idProva);
+        $connG = $this->model('gabarito');
+        
+        $cont = 1;
+        foreach($questoes as $questao){
+            $idQuestaoProva = $questao['id_questaoProva'];
+            if($respostas[$cont] == "meio"){
+                $divisor = 0.5;
+            } else {
+                $divisor = 1;
+            }
+            $insert = $connG::insertGabarito($idAluno, $idQuestaoProva, $respostas[$cont], $divisor);
+            $cont++;
+        }
+        
+        header("Location: /prova/detalhes/$idProva");
+    }
 }

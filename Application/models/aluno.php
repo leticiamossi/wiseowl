@@ -22,6 +22,13 @@ class Aluno
                                                                     WHERE p.id_prova = :ID", array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function GetAluno(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_alunos WHERE id_aluno = :ID", array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    } 
 }
 
 ?>

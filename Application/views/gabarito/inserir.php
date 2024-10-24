@@ -64,45 +64,19 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Montar Prova</h2>
-            <form action="/prova/tipoQuestao" method="POST" class="form-prova">
-                <div class="inp">
-                    <label for="materia">Qual a matéria da prova?</label>
-                    <select name="materia" id="materia">
-                        <option disabled selected>Selecione a Matéria</option>
-                        <?php foreach ($data['materias'] as $materia) { ?>
-                            <option value="<?php echo $materia['id_materia'] ?>"><?php echo $materia['nome_materia'] ?></option>
-                        <?php } ?>
-                    </select>
+            <h2 class="titulo-main">Inserir Gabarito</h2>
+            <form action="/gabarito/gabarito/<?php echo $data['prova']?>/<?php echo $data['aluno']?>" enctype="multipart/form-data" method="POST">
+                <input type="file" id="fileInput" accept="image/*" name="fileInput" capture="camera">
+                <div id="output">
+                    <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
-                <div class="inp">
-                    <label for="turma">Para qual turma será aplicada?</label>
-                    <select name="turma" id="turma">
-                        <option disabled selected>Selecione a turma</option>
-                        <?php foreach ($data['turmas'] as $turma) { ?>
-                            <option value="<?php echo $turma['id_turma'] ?>"><?php echo $turma['nome_turma'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="inp">
-                    <label for="data">Data da aplicaçao:</label>
-                    <input type="date" name="data" id="data">
-                    <div class="inp">
-                        <label for="notaMax">Nota máxima: </label>
-                        <input type="number" name="notaMax" id="notaMax" value="10">
-                    </div>
-                    <div class="inp">
-                        <label for="notaMed">Nota média: </label>
-                        <input type="number" name="notaMed" id="notaMed" value="6">
-                    </div>
-                    <div class="inp">
-                        <label for="obs">Observaçao </label>
-                        <input type="text" name="obs" id="obs">
-                    </div>
-                    <input type="submit" value="Próximo" class="btn-form">
+                <input class="btn-form btn-sec" type="submit" value="Inserir">
             </form>
         </div>
     </main>
+    <!-- CompressorJS -->
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
+    <script src="../../../public/assets/js/preview.js"></script>
     <script src="../../public/assets/js/menu.js"></script>
 </body>
 
