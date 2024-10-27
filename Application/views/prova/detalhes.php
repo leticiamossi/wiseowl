@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../../public/assets/css/Home/style.css">
 </head>
 
-<body onload="filtrar()">
+<body onload="alimentarPagina()">
     <header>
         <img src="../../../public/assets/img/Logo/Logo-verde.png" alt="Logo WiseOwl" class="logo">
         <span id="icon-menu" onclick="abrirMenu()">
@@ -111,8 +111,6 @@
                     <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th>Resultados</th>
-                            <th>Nota</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -120,62 +118,117 @@
 
                     </tbody>
                 </table>
+                <table class="table-main" style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Resultados</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="relatorioResultados">
+
+                    </tbody>
+                </table>
+
             </section>
         </div>
     </main>
     <script>
-        function filtrar() {
-            // var data = document.getElementById('data').value;
-            // var status = document.getElementById('status').value;
-            // var turma = document.getElementById('turma').value;
+        function alimentarPagina() {
 
             var json = JSON.parse('<?= json_encode($data['alunos'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
-            console.log(json)
+            var jsonG = JSON.parse('<?= json_encode($data['gabaritos'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
+
+            const cardResultados = document.querySelector('#relatorioResultados');
+            cardResultados.innerHTML = ''
             const cardAluno = document.querySelector('#relatorio');
             cardAluno.innerHTML = ''
 
-            // if(data != '') {
-            //     json = json.filter(p => p.data_prova.substr(0, 7) == data)
-            // }
-            // if (turma != "Todos") {
-            //     json = json.filter(p => p.turma_prova == turma)
-            // } 
-
             json.forEach((aluno, index) => {
-                // Create a row for basic info
-                let row = document.createElement("tr");
-                row.id = `main-row-${index}`;
-                row.classList.add("main-row");
-                row.innerHTML = `
-                <td>${aluno.nome_aluno}</td>
-                <td></td>
-                <td></td>
-                <td><a href="/gabarito/inserir/${aluno.id_prova}/${aluno.id_aluno}" class="btn btn-row">Inserir Gabarito</a></td>
-            `;
-
-                // Add a click event to expand the row
-                row.addEventListener("click", function() {
-                    let detailsRow = document.getElementById(`details-${index}`);
-                    let mainRow = document.getElementById(`main-row-${index}`);
-
-                    detailsRow.classList.toggle("expanded");
-                    mainRow.classList.toggle("row-active")
-
+                var cont = 1
+                var certa = 0.0
+                var errada = 0.0
+                jsonG.forEach((aux) => {
+                    if (aux.id_aluno === aluno.id_aluno && aux.status_questaoProva != "Anulada") {
+                        switch (aux.correcao_gabarito) {
+                            case "1":
+                                certa = certa + (1 * aux.peso_questaoProva)
+                                break
+                            case "0.5":
+                                certa = certa + (0.5 * aux.peso_questaoProva)
+                                errada = errada + (0.5 * aux.peso_questaoProva)
+                                break
+                            case "0":
+                                errada = errada + (1 * aux.peso_questaoProva)
+                                break
+                        }
+                        cont = cont + aux.peso_questaoProva
+                    }
+                    nota = (aux.notaMax_prova / cont) * certa
                 });
+                certa = (certa / cont) * 100
+                errada = (errada / cont) * 100
 
-                // Create a hidden row for details
-                let detailsRow = document.createElement("tr");
-                detailsRow.id = `details-${index}`;
-                detailsRow.classList.add("details");
-                detailsRow.innerHTML = `
-                <td colspan="4">TESTE</canvas></td>
+                if (certa == "0.0" && errada == "0.0") {
+                    let row = document.createElement("tr");
+                    row.id = `main-row-${index}`;
+                    row.classList.add("main-row");
+                    row.innerHTML = `
+                    <td>${aluno.nome_aluno}</td>
+                    <td><a href="/gabarito/inserir/${aluno.id_prova}/${aluno.id_aluno}" class="btn btn-row">Inserir Gabarito</a></td>
+                `;
+
+                    cardAluno.appendChild(row);
+                } else {
+
+
+
+                    let row = document.createElement("tr");
+                    row.id = `row-${index}`;
+                    row.classList.add("row");
+                    row.innerHTML = `
+                <td>${aluno.nome_aluno}</td>
+                <td style="display: flex; justify-content: center; gap:15px;">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#035e00" class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                        </svg> ${certa.toFixed(1)}% 
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#780800" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg> ${errada.toFixed(1)}%
+                    </div>
+                </td>
+                <td>${nota.toFixed(1)}</td>
+
             `;
 
-                // Append both rows to the table
-                cardAluno.appendChild(row);
-                cardAluno.appendChild(detailsRow);
-            })
+                    row.addEventListener("click", function() {
+                        let detailsRow = document.getElementById(`details-${index}`);
+                        let mainRow = document.getElementById(`row-${index}`);
 
+                        detailsRow.classList.toggle("expanded");
+                        mainRow.classList.toggle("row-active")
+
+                    });
+
+                    // Create a hidden row for details
+                    let detailsRow = document.createElement("tr");
+                    detailsRow.id = `details-${index}`;
+                    detailsRow.classList.add("details");
+                    detailsRow.innerHTML = `
+                <td colspan="3">TESTE</canvas></td>
+            `;
+
+                    // Append both rows to the table
+                    cardResultados.appendChild(row);
+                    cardResultados.appendChild(detailsRow);
+                }
+            })
         }
     </script>
     <script>

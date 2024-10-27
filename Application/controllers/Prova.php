@@ -82,7 +82,15 @@ class Prova extends Controller
     {
         $connA = $this->model('aluno');
         $alunos = $connA::GetAlunosProva($id);
-        $this->view('prova/detalhes', ['id' => $id, 'alunos' => $alunos]);
+
+        $connG = $this->model('gabarito');
+        $resultados = $connG::getResultados($id);
+
+        //1 = Certa
+        //0.5 = Meio Ponto
+        //0 = Errado
+
+        $this->view('prova/detalhes', ['id' => $id, 'alunos' => $alunos, 'gabaritos' => $resultados]);
     }
 
     public function questoes($id)

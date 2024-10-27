@@ -196,12 +196,15 @@ class Cadastro extends Controller
         $cont = 1;
         foreach($questoes as $questao){
             $idQuestaoProva = $questao['id_questaoProva'];
-            if($respostas[$cont] == "meio"){
-                $divisor = 0.5;
+            if($respostas[$cont] == $questao['respostaCerta_questao'] || $respostas[$cont] == "1"){
+                $correcao = 1;
+            } elseif($respostas[$cont] == "meio"){
+                $correcao = 0.5;
             } else {
-                $divisor = 1;
+                $correcao = 0;
             }
-            $insert = $connG::insertGabarito($idAluno, $idQuestaoProva, $respostas[$cont], $divisor);
+
+            $insert = $connG::insertGabarito($idAluno, $idQuestaoProva, $respostas[$cont], $correcao);
             $cont++;
         }
         
