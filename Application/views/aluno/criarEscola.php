@@ -64,25 +64,25 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
-            <h2 class="titulo-main">Criar Turma</h2>
-            <form action="/cadastro/turma" method="POST">
+            <h2 class="titulo-main">Criar Instituição</h2>
+            <form action="/cadastro/escola" method="POST" enctype="multipart/form-data" method="POST">
                 <div class="inp">
-                    <label for="nome">Nome/Apelido (Use um nome que diferencie as turmas)</label>
-                    <input type="text" name="nome" id="nome" placeholder="Ex.: 3A, 2° ano, PU1">
+                    <label for="nome">Nome da Instituição</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite o nome da instituição" required>
                 </div>
                 <div class="inp">
-                    <label for="escola">Instituição</label>
-                    <select name="escola" id="escola">
-                        <option value="" disabled selected>Selecione a instituição</option>
-                        <?php foreach ($data['escolas'] as $escola) { ?>
-                            <option value="<?php echo $escola['id_escola'] ?>"><?php echo $escola['nome_escola'] ?></option>
-                        <?php } ?>
-                    </select>
+                    <label for="fileInput">Logo</label>
+                    <input type="file" id="fileInput" accept="image/*" name="fileInput">
+                </div>
+                <div id="output">
+                    <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>
                 <input type="submit" value="Criar" class="btn-form">
             </form>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js"></script>
+    <script src="../../../public/assets/js/preview.js"></script>
     <script src="../../public/assets/js/menu.js"></script>
 </body>
 

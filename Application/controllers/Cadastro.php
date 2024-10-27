@@ -137,14 +137,41 @@ class Cadastro extends Controller
         }
     }
 
+    public function escola()
+    {
+        $nome = $_POST['nome'];
+        //IMAGEM
+        if (!empty($_FILES['fileInput'])) {
+            $dir = "C:/xampp/htdocs/wiseowl/public/assets/img/logo-escola/";
+            $arquivo = $_FILES['fileInput'];
+            $data = str_replace("-", "", date('d-m-y'));
+
+            $arquivoNovo = $dir . $data . $arquivo["name"];
+
+            if (move_uploaded_file($arquivo["tmp_name"], $arquivoNovo)) {
+                $arquivoNovo = $data . $arquivo["name"];
+            } else {
+                $arquivoNovo = "";
+            }
+        } else {
+            $arquivoNovo = "";
+        }
+        $id = 1;
+
+        $conn = $this->model('escola');
+        $insert = $conn::InsertEscola($nome, $arquivoNovo, $id);
+        header("Location: /aluno/index");
+    }
+
     public function turma()
     {
         $nome = $_POST['nome'];
+        $escola = $_POST['escola'];
         $ano = date('Y');
         $id = 1;
 
         $conn = $this->model('turmas');
-        $insert = $conn::InsertTurma($nome, $ano, $id);
+        $insert = $conn::InsertTurma($nome, $ano, $id, $escola);
         header("Location: /aluno/index");
     }
 

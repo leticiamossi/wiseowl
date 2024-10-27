@@ -104,6 +104,22 @@
             </a>
             <div>
                 <h3 class="titulo-main">Minhas Turmas</h3>
+                <table class="table-main">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Instituiçao</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($data['turmas'] as $turma){ ?>   
+                                <tr>
+                                    <td><?php echo $turma['nome_turma']?></td>
+                                    <td><?php echo $turma['nome_escola']?></td>
+                                </tr> 
+                            <?php } ?>
+                        </tbody>
+                    </table>
             </div>
         </div>
     </main>

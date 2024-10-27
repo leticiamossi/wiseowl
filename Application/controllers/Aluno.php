@@ -6,7 +6,10 @@ class Aluno extends Controller
 {
     public function index()
     {
-        $this->view('aluno/index');
+        $id = 1;
+        $conn = $this->model('turmas');
+        $turmas = $conn::GetTurmas($id);
+        $this->view('aluno/index', ['turmas' => $turmas]);
     }
 
     public function criar()
@@ -19,7 +22,15 @@ class Aluno extends Controller
 
     public function criarTurma()
     {
-        $this->view('aluno/criarTurma');
+        $id = 1;
+        $conn = $this->model('escola');
+        $escolas = $conn::GetEscolas($id);
+        $this->view('aluno/criarTurma', ['escolas' => $escolas]);
+    }
+
+    public function criarEscola()
+    {
+        $this->view('aluno/criarEscola');
     }
 }
 
