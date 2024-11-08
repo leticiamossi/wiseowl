@@ -21,6 +21,9 @@ class Gabarito
         $result = $conn->executeQuery("SELECT * FROM tb_prova AS p JOIN tb_questoesProva AS qp ON qp.prova_questaoProva = p.id_prova
                                                                     JOIN tb_gabaritos AS g ON g.questao_gabarito = qp.id_questaoProva
                                                                     JOIN tb_alunos AS a ON g.aluno_gabarito = a.id_aluno
+                                                                    LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
+                                                                    LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                    LEFT JOIN tb_assuntos AS ass ON qo.assunto_questao = ass.id_assunto || qd.assunto_questaoDesc = ass.id_assunto
                                                                     WHERE p.id_prova = :ID 
                                                                     ORDER BY a.nome_aluno", array(':ID' => $idProva));
         return $result->fetchAll(PDO::FETCH_ASSOC);

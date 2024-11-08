@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../../../public/assets/css/Header/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/Padrao/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/Home/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body onload="alimentarPagina()">
@@ -48,7 +49,7 @@
                 </svg>
                 <p>Relatório</p>
             </a>
-            <a href="/questao/index" class="item-nav item-active">
+            <a href="/prova/index" class="item-nav item-active">
                 <svg class="icon" id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                     <path d="m21.414 5h-4.414v-4.414zm.586 2v17h-20v-21a3 3 0 0 1 3-3h10v7zm-15 9h7v-2h-7zm10 2h-10v2h10zm0-8h-10v2h10z" />
                 </svg>
@@ -208,11 +209,21 @@
             `;
 
                     row.addEventListener("click", function() {
+                        const allDetailsRows = document.querySelectorAll('.details');
+                                    allDetailsRows.forEach(detailRow => {
+                            if (detailRow.classList.contains('expanded')) {
+                                detailRow.classList.remove('expanded');
+                                // Also remove the 'active' class from the main row
+                                const activeRow = document.querySelector(`#${detailRow.id.replace('details-', 'row-')}`);
+                                activeRow.classList.remove('row-active');
+                            }
+                        });
                         let detailsRow = document.getElementById(`details-${index}`);
                         let mainRow = document.getElementById(`row-${index}`);
 
                         detailsRow.classList.toggle("expanded");
                         mainRow.classList.toggle("row-active")
+                        montarRelatorio(jsonG.filter(j => j.id_aluno == aluno.id_aluno), index)
 
                     });
 
@@ -221,7 +232,18 @@
                     detailsRow.id = `details-${index}`;
                     detailsRow.classList.add("details");
                     detailsRow.innerHTML = `
-                <td colspan="3">TESTE</canvas></td>
+                <td colspan="3">
+                    <div style="display: flex; flex-direction: column">
+                        <div>
+                            <div id="composicao-${index}"></div>
+                            <div id="comparacao-${index}"></div>
+                        </div>
+                        <div>
+                            <div id="melhores-${index}"></div>
+                            <div id="piores-${index}"></div>
+                        </div>
+                    </div>
+                </td>
             `;
 
                     // Append both rows to the table
@@ -231,17 +253,8 @@
             })
         }
     </script>
-    <script>
-        document.querySelectorAll('tr.expansivel').forEach(row => {
-            row.addEventListener('click', () => {
-                const nextRow = row.nextElementSibling;
-                if (nextRow && nextRow.classList.contains('detalhes')) {
-                    nextRow.style.display = nextRow.style.display === 'table-row' ? 'none' : 'table-row';
-                }
-            });
-        });
-    </script>
     <script src="../../public/assets/js/menu.js"></script>
+    <script src="../../public/assets/js/relatorios/resumoAluno.js"></script>
 </body>
 
 </html>
