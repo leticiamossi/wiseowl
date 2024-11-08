@@ -23,7 +23,10 @@ function montarRelatorio(json, index) {
       type: 'bar',
       height: 150,
       stacked: true,
-      stackType: '100%'
+      stackType: '100%',
+      animations: {
+        enabled: false
+      }
     },
     plotOptions: {
       bar: {
@@ -139,6 +142,9 @@ function montarRelatorio(json, index) {
     chart: {
       type: 'bar',
       height: 300,
+      animations: {
+        enabled: false
+      }
     },
     plotOptions: {
       bar: {
@@ -208,7 +214,7 @@ function montarRelatorio(json, index) {
   };
 
   var chartCompa = new ApexCharts(document.querySelector("#comparacao-" + index), optionsCompa);
-  chartCompa.render();
+  chartCompa.render()
 
 
 

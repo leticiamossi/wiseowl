@@ -238,10 +238,6 @@
                             <div id="composicao-${index}"></div>
                             <div id="comparacao-${index}"></div>
                         </div>
-                        <div>
-                            <div id="melhores-${index}"></div>
-                            <div id="piores-${index}"></div>
-                        </div>
                     </div>
                 </td>
             `;

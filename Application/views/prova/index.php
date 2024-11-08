@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../../../public/assets/css/Header/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/Padrao/style.css">
     <link rel="stylesheet" href="../../../public/assets/css/Prova/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body onload="filtrar()">
@@ -87,9 +89,9 @@
                     <div class="inp">
                         <label for="status">Resultado</label>
                         <select name="status" id="status" onchange="filtrar()">
-                            <option>Todos</option>
-                            <option>Com resultados</option>
-                            <option>Sem resultados</option>
+                            <option value="all">Todos</option>
+                            <option value="result">Com resultados</option>
+                            <option value="no-result">Sem resultados</option>
                         </select>
                     </div>
                     <div class="inp">
@@ -127,12 +129,24 @@
             var turma = document.getElementById('turma').value;
 
             var json = JSON.parse('<?= json_encode($data['provas'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
-            console.log(json)
+            var jsonR = JSON.parse('<?= json_encode($data['resultados'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
+
             const cardProva = document.querySelector('#lista-provas');
             cardProva.innerHTML = ''
 
             if (data != '') {
                 json = json.filter(p => p.data_prova.substr(0, 7) == data)
+            }
+            console.log(json)
+            if (status != 'all') {
+                var semResult = jsonR.filter(r => r.correcao_gabarito === null)
+                const ids = [...new Set(semResult.map(item => item.id_prova))];
+                if(status === 'no-result'){
+                    json = json.filter(p => ids.includes(p.id_prova))
+                }
+                if(status === 'result'){
+                    json = json.filter(p => !ids.includes(p.id_prova))
+                }
             }
             if (turma != "Todos") {
                 json = json.filter(p => p.turma_prova == turma)
@@ -141,8 +155,8 @@
             json.forEach((prova, index) => {
                 // Create a row for basic info
                 let row = document.createElement("tr");
-                row.id = `main-row-${index}`;
-                row.classList.add("main-row");
+                row.id = `row-${index}`;
+                row.classList.add("row");
                 row.innerHTML = `
                 <td>${prova.data_prova}</td>
                 <td>${prova.nome_materia} - ${prova.nome_turma}</td>
@@ -152,12 +166,24 @@
 
                 // Add a click event to expand the row
                 row.addEventListener("click", function() {
+                    const allDetailsRows = document.querySelectorAll('.details');
+                    allDetailsRows.forEach(detailRow => {
+                        if (detailRow.classList.contains('expanded')) {
+                            detailRow.classList.remove('expanded');
+                            const activeRow = document.querySelector(`#${detailRow.id.replace('details-', 'row-')}`);
+                            activeRow.classList.remove('row-active');
+                        }
+                    });
                     let detailsRow = document.getElementById(`details-${index}`);
-                    let mainRow = document.getElementById(`main-row-${index}`);
+                    let mainRow = document.getElementById(`row-${index}`);
+
 
                     detailsRow.classList.toggle("expanded");
-                    mainRow.classList.toggle("row-active")
-
+                    mainRow.classList.toggle("row-active");
+                    if(jsonR.filter(j => j.id_prova == prova.id_prova)[0].correcao_gabarito !== null){
+                        montarRelatorio(jsonR.filter(j => j.id_prova == prova.id_prova), index);
+                    }
+                    
                 });
 
                 // Create a hidden row for details
@@ -165,7 +191,14 @@
                 detailsRow.id = `details-${index}`;
                 detailsRow.classList.add("details");
                 detailsRow.innerHTML = `
-                <td colspan="4">TESTE</canvas></td>
+                <td colspan="4">
+                    <div style="display: flex; flex-direction: column">
+                        <div>
+                            <div id="composicao-${index}"></div>
+                            <div id="comparacao-${index}"></div>
+                        </div>
+                    </div>
+                </td>
             `;
 
                 // Append both rows to the table
@@ -186,6 +219,7 @@
         });
     </script>
     <script src="../../public/assets/js/menu.js"></script>
+    <script src="../../public/assets/js/relatorios/resumoProva.js"></script>
 </body>
 
 </html>

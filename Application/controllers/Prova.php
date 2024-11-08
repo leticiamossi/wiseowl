@@ -9,7 +9,8 @@ class Prova extends Controller
         $id = 1;
         $conn = $this->model('prova');
         $provas = $conn::GetProvas($id);
-        $this->view('prova/index', ['provas' => $provas]);
+        $provasResultados = $conn::GetProvasResultados($id);
+        $this->view('prova/index', ['provas' => $provas, 'resultados' => $provasResultados]);
     }
 
     public function formularioInicial()

@@ -16,6 +16,20 @@ class Prova
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function GetProvasResultados(string $id)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT p.*, m.*, qp.*, qd.assunto_questaoDesc, qo.assunto_questao, ass.*, g.* FROM tb_prova AS p LEFT JOIN tb_turmas AS t ON p.turma_prova = t.id_turma 
+                                                                    LEFT JOIN tb_materias AS m ON m.id_materia = p.materia_prova
+                                                                    LEFT JOIN tb_questoesProva AS qp ON qp.prova_questaoProva = p.id_prova
+                                                                    LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
+                                                                    LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                    LEFT JOIN tb_assuntos AS ass ON qo.assunto_questao = ass.id_assunto || qd.assunto_questaoDesc = ass.id_assunto
+                                                                    LEFT JOIN tb_gabaritos AS g ON g.questao_gabarito = qp.id_questaoProva
+                                                                    WHERE t.professor_turma = :ID", array(':ID' => $id));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function AddProva(string $materia, string $turma, string $data, string $notaMax, string $notaMed, string $obs)
     {
         $conn = new Database();
