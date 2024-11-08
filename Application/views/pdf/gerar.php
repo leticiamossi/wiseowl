@@ -85,7 +85,7 @@
                 <tbody>
                     <tr>
                         <td rowspan="3" width="150px">
-                            <img src="../../public/assets/img/logo-escola/logo-header.png" width="150px">
+                            <img src="../../public/assets/img/logo-escola/<?php if(isset($data['prova'][0]['logo_escola'])){ echo $data['prova'][0]['logo_escola']; }else{ echo 'Logo-verde.png'; }?>" style="max-height: 100px; max-width: 150px; display: block; margin: 0 auto;">
                         </td>
                         <td colspan="4" style="position: relative;">
                             <h5 style="top: 0; position: absolute;">Aluno</h5>
@@ -215,8 +215,11 @@
                     }
                 };
 
+                let url = window.location.href;
+                let parts = url.split('/');
+
                 html2pdf().from(element).set(opt).save().then(() => {
-                    window.location.href = "/prova";
+                    window.location.href = '/prova/detalhes/' + parts[parts.length - 1];
                 });
             }
         </script>
