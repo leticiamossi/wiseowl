@@ -13,12 +13,13 @@ class Login extends Controller
         if($email === null){
             $email = $_POST['email'];
             $senha = $_POST['senha'];
-        } else {
-        }
+        } 
 
         $conn = $this->model('professor');
         $professor = $conn::FindProfessor($email, $senha);
 
+        session_start();
+        
         foreach($professor as $p){
             $_SESSION['ID'] = $p['id_professor'];
             $_SESSION['NOME'] = $p['nome_professor'];

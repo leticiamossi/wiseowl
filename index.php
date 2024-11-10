@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php
+        session_start();
         require './Application/autoload.php';
         use Application\core\App;
         use Application\core\Controller;
