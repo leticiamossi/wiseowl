@@ -65,7 +65,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Criar Instituição</h2>
-            <form action="/cadastro/escola" method="POST" enctype="multipart/form-data" method="POST">
+            <form action="/cadastro/escola" method="POST" enctype="multipart/form-data">
                 <div class="inp">
                     <label for="nome">Nome da Instituição</label>
                     <input type="text" name="nome" id="nome" placeholder="Digite o nome da instituição" required>

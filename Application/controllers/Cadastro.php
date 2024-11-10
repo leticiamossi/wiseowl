@@ -4,6 +4,11 @@ use Application\core\Controller;
 
 class Cadastro extends Controller
 {
+    public function professor()
+    {
+        $this->view('cadastro/professor');
+    }
+    
     public function extra($tipo, $id)
     {
         $connP = $this->model('prova');
