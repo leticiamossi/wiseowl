@@ -48,7 +48,7 @@ function montarRelatorio(json, index) {
           colors: ["#5B009B"]
         },
         formatter: function (val, { seriesIndex, dataPointIndex, w }) {
-          return w.config.series[seriesIndex].name + ' - ' + val + "%"
+          return w.config.series[seriesIndex].name + ' - ' + val.toFixed(1) + "%"
         },
       },
       xaxis: {
@@ -117,8 +117,8 @@ function montarRelatorio(json, index) {
       certa = certa + (meia / 2)
       errada = errada + (meia / 2)
   
-      arrCertas.push(certa)
-      arrErradas.push(errada)
+      arrCertas.push(certa.toFixed(1))
+      arrErradas.push(errada.toFixed(1))
     })
   console.log(arrCertas);
     var optionsCompa = {

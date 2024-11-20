@@ -130,9 +130,9 @@
             var topico = document.getElementById('topico').value;
             var tamanho = document.getElementById('tamanho').value;
             var dificuldade = document.getElementById('dificuldade').value;
-
+            
             var json = JSON.parse('<?= json_encode($data['questoes'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
-            console.log(json)
+
             const cardQuestao = document.querySelector('#lista-questoes');
             cardQuestao.innerHTML = ''
 
@@ -164,6 +164,7 @@
             if (dificuldade != "Todos") {
                 json = json.filter(q => q.dificuldade_questao == dificuldade)
             }
+
 
             json.forEach(questao => {
                 var certa = "";

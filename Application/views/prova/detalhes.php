@@ -154,7 +154,7 @@
             cardAluno.innerHTML = ''
 
             json.forEach((aluno, index) => {
-                var cont = 1
+                var cont = 0
                 var certa = 0.0
                 var errada = 0.0
                 jsonG.forEach((aux) => {
@@ -175,10 +175,11 @@
                     }
                     nota = (aux.notaMax_prova / cont) * certa
                 });
+                
                 certa = (certa / cont) * 100
                 errada = (errada / cont) * 100
 
-                if (certa == "0.0" && errada == "0.0") {
+                if (isNaN(certa) && isNaN(errada)) {
                     let row = document.createElement("tr");
                     row.id = `main-row-${index}`;
                     row.classList.add("main-row");

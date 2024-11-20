@@ -73,7 +73,7 @@
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Inserir Gabarito</h2>
             <form action="/gabarito/gabarito/<?php echo $data['prova']?>/<?php echo $data['aluno']?>" enctype="multipart/form-data" method="POST">
-                <input type="file" id="fileInput" accept="image/*" name="fileInput" capture="camera">
+                <input type="file" id="fileInput" accept="image/*" name="fileInput" capture="camera" required>
                 <div id="output">
                     <img id="preview" src="" alt="Prévia da Imagem" style="display: none; border-radius: 10px; margin: 10px 0;">
                 </div>

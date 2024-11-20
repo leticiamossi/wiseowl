@@ -137,7 +137,7 @@ class Cadastro extends Controller
             if (is_null($end)) {
                 header("Location: /prova/tipoQuestao/$id");
             } else {
-                header("Location: /home");
+                header("Location: /prova/detalhes/$id");
             }
         }
     }

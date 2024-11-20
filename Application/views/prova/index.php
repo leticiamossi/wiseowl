@@ -144,7 +144,7 @@
             if (data != '') {
                 json = json.filter(p => p.data_prova.substr(0, 7) == data)
             }
-            console.log(json)
+
             if (status != 'all') {
                 var semResult = jsonR.filter(r => r.correcao_gabarito === null)
                 const ids = [...new Set(semResult.map(item => item.id_prova))];
