@@ -9,6 +9,8 @@ class Home extends Controller
         $this->verification();
         if($this->permission){
             $this->view('home/index');
+        } else {
+            header("Location: /");
         }
     }
 }
