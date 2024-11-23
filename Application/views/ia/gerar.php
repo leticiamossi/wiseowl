@@ -73,6 +73,7 @@
         <div class="caixa caixa-center">
             <div class="linha">
                 <h2 class="titulo-main">Questão <?php echo $data['num']?></h2>
+                <p>Para garantir a precisão, revise cuidadosamente as questões geradas pela IA: verifique se estão corretas, bem formuladas e adequadas ao conteúdo desejado antes de utilizá-las.</p>
                 <button onclick="location.reload()" class="btn-form btn-small">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon-white-btn" fill="white" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>

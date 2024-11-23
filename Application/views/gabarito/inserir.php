@@ -72,6 +72,7 @@
     <main class="fundo-roxo">
         <div class="caixa caixa-center">
             <h2 class="titulo-main">Inserir Gabarito</h2>
+            <h4>Para um resultado mais preciso e prático, utilize a câmera do seu celular: as fotos não ocupam espaço no dispositivo e o sistema realiza uma leitura mais eficiente da imagem.</h4>
             <form action="/gabarito/gabarito/<?php echo $data['prova']?>/<?php echo $data['aluno']?>" enctype="multipart/form-data" method="POST">
                 <input type="file" id="fileInput" accept="image/*" name="fileInput" capture="camera" required>
                 <div id="output">
