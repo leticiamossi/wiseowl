@@ -27,6 +27,11 @@ class Login extends Controller
 
         header("Location: /home/index");
     }
+
+    public function logout(){
+        session_destroy();
+        header("Location: /");
+    }
 }
 
 ?>

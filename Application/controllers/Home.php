@@ -6,7 +6,10 @@ class Home extends Controller
 { 
     public function index()
     {
-        $this->view('home/index');
+        $this->verification();
+        if($this->permission){
+            $this->view('home/index');
+        }
     }
 }
 

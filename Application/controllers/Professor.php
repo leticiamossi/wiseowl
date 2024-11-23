@@ -15,9 +15,7 @@ class Professor extends Controller
         $insert = $conn::InsertProfessor($nome, $sobrenome, $email, $senha);
 
         header("Location: /login/login/$email/$senha");
-
     }
-
 }
 
 ?>
