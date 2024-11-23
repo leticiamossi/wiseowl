@@ -99,6 +99,7 @@
                 <div id="radar-assunto"></div>
             </div>
             <div id="analise-questoes">
+                <h4 class="titulo-main">Questoes</h4>
                 <table class="table-main">
                     <thead>
                         <tr>
@@ -113,12 +114,29 @@
                     </tbody>
                 </table>
             </div>
+            <div id="analise-alunos">
+                <h4 class="titulo-main">Alunos</h4>
+                <table class="table-main">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Resultados</th>
+                            <th>Nota</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-alunos">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         <script>
             function carregar() {
                 var json = JSON.parse('<?= json_encode($data['resultados'], JSON_UNESCAPED_LINE_TERMINATORS) ?>');
                 montarNumeros(json)
                 montarListaQuestoes(json)
+                montarListaAlunos(json)
             }
         </script>
         <script src="../../public/assets/js/relatorios/relatorioProva.js"></script>
