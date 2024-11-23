@@ -7,6 +7,13 @@ use PDO;
 
 class Materias 
 {
+    public static function GetAllMaterias()
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_materias ORDER BY nome_materia");
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function GetMaterias(string $id)
     {
         $conn = new Database();

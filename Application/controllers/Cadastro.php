@@ -258,4 +258,14 @@ class Cadastro extends Controller
             header("Location: /prova/detalhes/$idProva");
         }
     }
+
+    public function disciplina()
+    {
+        $materia = $_POST['materia'];
+
+        $conn = $this->model('professor');
+        $insert = $conn::InsertDisciplina($materia, $_SESSION['ID']);
+
+        header("Location: /aluno/index");
+    }
 }

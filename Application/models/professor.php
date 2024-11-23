@@ -20,6 +20,13 @@ class Professor
         $result = $conn->executeQuery("SELECT * FROM tb_professores WHERE email_professor = :EMAIL && senha_professor = SHA1(:SENHA)", array(':EMAIL' => $email, ':SENHA' => $senha));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function InsertDisciplina(string $idMateria, string $idProf)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("INSERT INTO tb_disciplinas(materia_disciplina, professor_disciplina) VALUES (:MT, :PROF);", array(':MT' => $idMateria, ':PROF' => $idProf));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

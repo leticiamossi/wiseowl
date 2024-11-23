@@ -16,6 +16,14 @@ class Professor extends Controller
 
         header("Location: /login/login/$email/$senha");
     }
+
+    public function disciplina()
+    {
+        $conn = $this->model('materias');
+        $materias = $conn::GetAllMaterias();
+
+        $this->view('cadastro/disciplina' , ['materias' => $materias]);
+    }
 }
 
 ?>
