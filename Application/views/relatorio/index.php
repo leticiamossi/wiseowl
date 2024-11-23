@@ -184,7 +184,7 @@
                         <tr>
                             <th>Data</th>
                             <th>Matéria</th>
-                            <th>Observaçoes</th>
+                            <th>Observações</th>
                             <th>Resultados</th>
                             <th></th>
                         </tr>

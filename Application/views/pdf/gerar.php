@@ -139,7 +139,7 @@
            
             <table style="text-align: center; width: 150px; margin: 10px auto;">
                 <tr>
-                    <th>Questao</th>
+                    <th>Questão</th>
                     <th>Alternativa</th>
                 </tr>
                 <?php 

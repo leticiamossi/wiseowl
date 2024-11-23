@@ -115,7 +115,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Instituiçao</th>
+                                <th>Instituição</th>
                             </tr>
                         </thead>
                         <tbody>

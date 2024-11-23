@@ -99,7 +99,7 @@
                 <div id="radar-assunto"></div>
             </div>
             <div id="analise-questoes">
-                <h4 class="titulo-main">Questoes</h4>
+                <h4 class="titulo-main">Questões</h4>
                 <table class="table-main">
                     <thead>
                         <tr>

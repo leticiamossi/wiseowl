@@ -111,7 +111,7 @@
                 </div>
             </a>
 
-            <h3 class="titulo-main">Visao Geral</h3>
+            <h3 class="titulo-main">Visão Geral</h3>
 
             <h3 class="titulo-main">Alunos</h3>
             <section class="main-provas" id="provas">

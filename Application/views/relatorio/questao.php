@@ -72,7 +72,7 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa">
-            <h3 class="titulo-main">Relatório da Questao</h3>
+            <h3 class="titulo-main">Relatório da Questão</h3>
             <div id="cabecalho" class="cabecalho-info">
                 <div class="linha-cabecalho-info">
                     <p id="materia"></p>

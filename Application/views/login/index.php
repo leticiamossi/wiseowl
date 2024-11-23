@@ -22,12 +22,12 @@
             <img src="../../public/assets/img/Logo/Logo.png" alt="" width="300px" style="margin: 0 auto; display: block">
             <div class="inp">
                 <label for="email">E-mail</label>
-                <input type="text" name="email" placeholder="Digite seu e-mail">
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
             </div>
             
             <div class="inp">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite sua senha">
+                <input type="password" name="senha" placeholder="Digite sua senha" required>
             </div>
             <input type="submit" value="Entrar" class="btn-form">
             <p style="text-align: center;">Novo(a) aqui? <a href="/cadastro/professor" style="color: #5B009B; text-decoration: underline;">Cadastre-se</a></p>

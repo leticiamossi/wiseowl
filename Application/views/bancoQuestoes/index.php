@@ -75,15 +75,21 @@
 
             <div>
                 <div class="filtro-linha">
-                    <select name="assunto" id="assunto" onchange="filtrar();GetAssunto()">
+                    <div class="inp">
+                        <label for="assunto">Assunto</label>
+                        <select name="assunto" id="assunto" onchange="filtrar();GetAssunto()">
                         <option>Todos</option>
                         <?php foreach ($data['assuntos'] as $assunto) { ?>
                             <option><?php echo $assunto['assunto_assunto'] ?></option>
-                        <?php } ?>
-                    </select>
-                    <select name="topico" id="topico" onchange="filtrar()">
-                        <option disabled selected value="">Selecione um tópico</option>
-                    </select>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="inp">
+                        <label for="topico">Tópico</label>
+                        <select name="topico" id="topico" onchange="filtrar()">
+                            <option disabled selected value="">Selecione um tópico</option>
+                        </select>
+                    </div>
                     <script>
                         const json = JSON.parse('<?= json_encode($data['topicos']); ?>');
 
@@ -101,18 +107,24 @@
                             })
                         }
                     </script>   
-                    <select name="tamanho" id="tamanho" onchange="filtrar()">
-                        <option>Todos</option>
-                        <option value="curta">Curta (até 250 caracteres)</option>
-                        <option value="media">Média (250 a 500 caracters)</option>
-                        <option value="longa">Longa (+500 caracteres)</option>
-                    </select>
-                    <select name="dificuldade" id="dificuldade" onchange="filtrar()">
-                        <option>Todos</option>
-                        <option value="1">Fácil</option>
-                        <option value="2">Intermediária</option>
-                        <option value="3">Difícil</option>
-                    </select>
+                    <div class="inp">
+                        <label for="tamanho">Tamanho</label>
+                        <select name="tamanho" id="tamanho" onchange="filtrar()">
+                            <option>Todos</option>
+                            <option value="curta">Curta (até 250 caracteres)</option>
+                            <option value="media">Média (250 a 500 caracters)</option>
+                            <option value="longa">Longa (+500 caracteres)</option>
+                        </select>
+                    </div>
+                    <div class="inp">
+                        <label for="dificuldade">Dificuldade</label>
+                        <select name="dificuldade" id="dificuldade" onchange="filtrar()">
+                            <option>Todos</option>
+                            <option value="1">Fácil</option>
+                            <option value="2">Intermediária</option>
+                            <option value="3">Difícil</option>
+                        </select>
+                    </div>
                 </div>
                 <section class="main-questoes" id="questoes">
                     <div class="container">

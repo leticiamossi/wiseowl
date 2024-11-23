@@ -103,7 +103,7 @@
                         <input type="number" name="notaMed" id="notaMed" value="6">
                     </div>
                     <div class="inp">
-                        <label for="obs">Observaçao </label>
+                        <label for="obs">Observação </label>
                         <input type="text" name="obs" id="obs">
                     </div>
                     <input type="submit" value="Próximo" class="btn-form">
