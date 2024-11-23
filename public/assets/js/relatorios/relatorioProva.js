@@ -1,5 +1,4 @@
 function montarNumeros(json) {
-  console.log(json)
 
   const alunos = [...new Set(json.map(item => item.id_aluno))];
 
@@ -210,11 +209,10 @@ function montarListaQuestoes(json) {
     }
 
     var info = json.filter(q => q.id_questaoProva === questao)
-    document.getElementById("lista-questoes").innerHTML +=
-      `<tr id="row-${index}" style="background-color:${cor}; ">
-          <td>${index + 1}</td>
-          <td>${info[0]['assunto_assunto']}</td>
-          <td style="display: flex; justify-content: center; gap:15px;">
+
+    var resultadosQuestao = ""
+    if (info[0]['status_questaoProva'] !== 'Anulada') {
+      resultadosQuestao = `<td style="display: flex; justify-content: center; gap:15px;">
                   <div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#035e00" class="bi bi-check-circle" viewBox="0 0 16 16">
                           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -227,7 +225,16 @@ function montarListaQuestoes(json) {
                           <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
                       </svg> ${(errada).toFixed(1)}%
                   </div>
-              </td>
+              </td>`
+    } else {
+      resultadosQuestao = "<td>Anulada</td>";
+    }
+
+    document.getElementById("lista-questoes").innerHTML +=
+      `<tr id="row-${index}" style="background-color:${cor}; ">
+          <td>${index + 1}</td>
+          <td>${info[0]['assunto_assunto']}</td>
+          ${resultadosQuestao}
           <td><a href="/relatorio/questao/${questao}" class="btn btn-row">Detalhar</a></td>
       </tr>`
 
@@ -271,7 +278,7 @@ function montarListaAlunos(json) {
     if (nota < notaMed) {
       cor = "rgba(204, 161, 75, .4)"
     }
-    if (nota < notaMed/2) {
+    if (nota < notaMed / 2) {
       cor = "rgba(204, 94, 75, .4)"
     }
 

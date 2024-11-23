@@ -133,7 +133,7 @@ class Prova extends Controller
             $connP = $this->model('prova');
             $update = $connP::AnularQuestao($idP);
     
-            header("Location: /prova/opcoes/$id");
+            header("Location: /prova/detalhes/$id");
         }
     }
 }
