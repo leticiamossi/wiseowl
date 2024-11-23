@@ -177,14 +177,14 @@
             </div>
 
             <div style="width: 90%; margin: 20px auto">
-                <div id="mp-assuntos" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                <div id="mp-assuntos" style="display: flex; flex-direction: row; flex-wrap: wrap;">
                     <div id="melh-ass" style="min-width: 500px;"></div>
                     <div id="crit-ass" style="min-width: 500px;"></div>
                 </div>
                 <div id="media-turma"></div>
             </div>
             <h3 class="titulo-main">Provas</h3>
-            <div id="mp-provas">
+            <div id="mp-provas" style="width: 90%; margin: 20px auto; overflow-y: auto">
                 <table class="table-main">
                     <thead>
                         <tr>

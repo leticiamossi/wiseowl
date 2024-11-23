@@ -85,6 +85,9 @@ function montarNumeros(json, jsonT) {
             options: {
                 legend: {
                     show: false
+                },
+                chart: {
+                    height: 300,
                 }
             }
         }, {
@@ -153,6 +156,9 @@ function montarNumeros(json, jsonT) {
             options: {
                 legend: {
                     show: false
+                },
+                chart: {
+                    height: 300,
                 }
             }
         }, {

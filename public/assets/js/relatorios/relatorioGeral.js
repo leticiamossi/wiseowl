@@ -176,6 +176,9 @@ function montarRelatorioGeral(json) {
             options: {
                 legend: {
                     show: false
+                },
+                chart: {
+                    height: 300
                 }
             }
         }, {
@@ -244,6 +247,9 @@ function montarRelatorioGeral(json) {
             options: {
                 legend: {
                     show: false
+                },
+                chart: {
+                    height: 300
                 }
             }
         }, {

@@ -183,23 +183,23 @@
             </div>
             <div>
                 <h3 class="titulo-main">Assunto</h3>
-                <div id="mp-assuntos" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; width: 90%; margin: 20px auto">
+                <div id="mp-assuntos" style="display: flex; flex-direction: row; flex-wrap: wrap; width: 90%; margin: 20px auto">
                     <div id="melh-ass" style="min-width: 500px;"></div>
                     <div id="crit-ass" style="min-width: 500px;"></div>
-                    <div id="tabela-ass" style="height: 300px; overflow-y: auto">
-                        <table class="table-main" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>Assunto</th>
-                                    <th>Acertos Aluno</th>
-                                    <th>Acertos Turma</th>
-                                </tr>
-                            </thead>
-                            <tbody id="lista-assuntos">
-    
-                            </tbody>
-                        </table>
-                    </div>
+                </div>
+                <div id="tabela-ass" style="height: 300px; overflow: auto; width: 90%; margin: 0 auto">
+                    <table class="table-main" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Assunto</th>
+                                <th>Acertos Aluno</th>
+                                <th>Acertos Turma</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-assuntos">
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div style="width: 90%; margin: 20px auto">

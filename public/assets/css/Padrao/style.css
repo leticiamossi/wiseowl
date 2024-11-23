@@ -399,10 +399,8 @@ tr.details.expanded {
     width: 40%;
 }
 
-@media screen and (max-width: 1780px) {
-    #tabela-ass {
-        width: 100%;
-    }
+#mp-assuntos {
+    justify-content: center;
 }
 
 /* Estilos para tablets em modo retrato */
@@ -453,6 +451,23 @@ tr.details.expanded {
     
     #radar-assunto {
         width: 100%;
+    }
+
+    #mp-assuntos {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .numeros-relatorio {
+        overflow-x: auto;
+        height: 110px;
+        padding: 0 20px;
+    }
+
+    #analise-questoes, #analise-alunos {
+        width: 90%;
+        overflow-y: auto;
+        margin: 0 auto;
     }
 }
 
