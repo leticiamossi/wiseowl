@@ -26,4 +26,12 @@ class Relatorio extends Controller
 
         $this->view('relatorio/prova', ['resultados' => $resultados]);
     }
+
+    public function questao($id)
+    {
+        $connG = $this->model('gabarito');
+        $resultados = $connG::getResultadosQuestao($id);
+
+        $this->view('relatorio/questao', ['resultados' => $resultados]);
+    }
 }
