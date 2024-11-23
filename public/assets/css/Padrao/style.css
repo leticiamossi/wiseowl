@@ -403,6 +403,12 @@ tr.details.expanded {
     width: 40%;
 }
 
+@media screen and (max-width: 1780px) {
+    #tabela-ass {
+        width: 100%;
+    }
+}
+
 /* Estilos para tablets em modo retrato */
 @media screen and (max-width: 768px) {
     .caixa {

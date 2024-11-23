@@ -62,6 +62,38 @@ class Gabarito
                                                                     ORDER BY a.nome_aluno", array(':ID' => $idQuestaoProva));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getResultadosAluno(string $idQuestaoProva)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_prova AS p JOIN tb_questoesProva AS qp ON qp.prova_questaoProva = p.id_prova
+                                                                    JOIN tb_gabaritos AS g ON g.questao_gabarito = qp.id_questaoProva
+                                                                    JOIN tb_alunos AS a ON g.aluno_gabarito = a.id_aluno
+                                                                    JOIN tb_turmas AS t ON t.id_turma = a.turma_aluno
+                                                                    LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
+                                                                    LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                    LEFT JOIN tb_assuntos AS ass ON qo.assunto_questao = ass.id_assunto || qd.assunto_questaoDesc = ass.id_assunto
+                                                                    LEFT JOIN tb_materias AS m ON ass.materia_assunto = m.id_materia
+                                                                    WHERE a.id_aluno = :ID 
+                                                                    ORDER BY a.nome_aluno", array(':ID' => $idQuestaoProva));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getResultadosTurmaAluno(string $idAluno)
+    {
+        $conn = new Database();
+        $result = $conn->executeQuery("SELECT * FROM tb_prova AS p JOIN tb_questoesProva AS qp ON qp.prova_questaoProva = p.id_prova
+                                                                    JOIN tb_gabaritos AS g ON g.questao_gabarito = qp.id_questaoProva
+                                                                    JOIN tb_alunos AS a ON g.aluno_gabarito = a.id_aluno
+                                                                    JOIN tb_turmas AS t ON t.id_turma = a.turma_aluno
+                                                                    LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
+                                                                    LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                    LEFT JOIN tb_assuntos AS ass ON qo.assunto_questao = ass.id_assunto || qd.assunto_questaoDesc = ass.id_assunto
+                                                                    LEFT JOIN tb_materias AS m ON ass.materia_assunto = m.id_materia
+                                                                    WHERE t.id_turma = (SELECT turma_aluno FROM tb_alunos WHERE id_aluno = :ID)
+                                                                    ORDER BY a.nome_aluno", array(':ID' => $idAluno));
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
