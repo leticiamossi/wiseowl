@@ -108,10 +108,15 @@
                 <script>
                     function filtrar() {
                         var json = JSON.parse('<?= json_encode($data['resultados']); ?>');
+                        var data = document.getElementById('data').value;
                         var turma = document.getElementById('turma').value
                         var materia = document.getElementById('materia').value
                         var assunto = document.getElementById('assunto').value
                         var topico = document.getElementById('topico').value
+
+                        if (data != '') {
+                            json = json.filter(p => p.data_prova.substr(0, 7) == data)
+                        }
 
                         if (turma !== "") {
                             json = json.filter(j => j.id_turma == turma)
@@ -127,6 +132,7 @@
                         }
 
                         atualizarRelatorioGeral(json);
+                        montarListaProvas(json)
                     }
 
                     function carregar() {
@@ -139,7 +145,6 @@
 
                         var json = JSON.parse('<?= json_encode($data['resultados']); ?>');
                         montarRelatorioGeral(json)
-                        montarListaProvas(json)
                     }
 
                     function GetAssunto() {
@@ -196,7 +201,7 @@
             </div>
             <script src="../../public/assets/js/relatorios/relatorioGeral.js"></script>
         </div>
-        
+
     </main>
     <script src="../../public/assets/js/menu.js"></script>
 </body>

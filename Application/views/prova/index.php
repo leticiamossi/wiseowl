@@ -105,8 +105,9 @@
                         <label for="turma">Turma</label>
                         <select name="turma" id="turma" onchange="filtrar()">
                             <option>Todos</option>
-                            <option value="1">3A</option>
-                            <option value="2">3B</option>
+                            <?php foreach ($data['turmas'] as $turma) { ?>
+                            <option value="<?php echo $turma['id_turma']; ?>"><?php echo $turma['nome_turma']; ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                 </div>

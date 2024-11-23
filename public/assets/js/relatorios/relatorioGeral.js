@@ -317,6 +317,7 @@ function atualizarRelatorioGeral(json) {
 
 function montarListaProvas(json) {
     const idProvas = [...new Set(json.map(item => item.id_prova))];
+    document.getElementById("lista-provas").innerHTML = ''
 
     idProvas.forEach((prova, index) => {
         var count = json.filter(p => p.id_prova === prova).length

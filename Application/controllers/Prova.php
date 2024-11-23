@@ -12,7 +12,10 @@ class Prova extends Controller
             $conn = $this->model('prova');
             $provas = $conn::GetProvas($id);
             $provasResultados = $conn::GetProvasResultados($id);
-            $this->view('prova/index', ['provas' => $provas, 'resultados' => $provasResultados]);
+
+            $connT = $this->model('turmas');
+            $turmas = $connT::GetTurmas($id);
+            $this->view('prova/index', ['provas' => $provas, 'resultados' => $provasResultados, 'turmas' => $turmas]);
         }
     }
 
