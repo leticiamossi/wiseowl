@@ -10,7 +10,7 @@ class Home extends Controller
         if($this->permission){
             $this->view('home/index');
         } else {
-            header("Location: /");
+            header("Location: /Login");
         }
     }
 }
