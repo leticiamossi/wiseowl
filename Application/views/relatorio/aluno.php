@@ -208,7 +208,21 @@
             </div>
             <div>
                 <h3 class="titulo-main">Questões Críticas</h3>
-                <div id="questoes-criticas"></div>
+                <div id="questoes-criticas">
+                    <table class="table-main">
+                        <thead>
+                            <tr>
+                                <th>Assunto</th>
+                                <th>Resposta do Aluno</th>
+                                <th>Resposta Certa</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-questoes">
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script src="../../public/assets/js/relatorios/relatorioAluno.js"></script>

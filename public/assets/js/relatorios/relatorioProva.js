@@ -147,10 +147,10 @@ function montarNumeros(json) {
   chartDistribuicaoNota.render();
 
 
-  const assuntos = [...new Set(json.map(item => item.assunto_assunto))];
+  const assuntos = [...new Set(json.map(item => item.topico_assunto))];
   distribuicaoAss = []
   assuntos.forEach(ass => {
-    var aux = json.filter(a => a.assunto_assunto === ass)
+    var aux = json.filter(a => a.topico_assunto === ass)
     var acert = aux.reduce((acumulador, valor) => acumulador + parseFloat(valor.correcao_gabarito), 0)
     distribuicaoAss.push(acert)
   })
@@ -233,7 +233,7 @@ function montarListaQuestoes(json) {
     document.getElementById("lista-questoes").innerHTML +=
       `<tr id="row-${index}" style="background-color:${cor}; ">
           <td>${index + 1}</td>
-          <td>${info[0]['assunto_assunto']}</td>
+          <td>${info[0]['topico_assunto']}</td>
           ${resultadosQuestao}
           <td><a href="/relatorio/questao/${questao}" class="btn btn-row">Detalhar</a></td>
       </tr>`

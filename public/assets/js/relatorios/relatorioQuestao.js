@@ -1,4 +1,5 @@
 function montarNumeros(json) {
+    console.log(json)
     const alunos = [...new Set(json.map(item => item.id_aluno))];
 
     document.getElementById("materia").innerHTML += "<b>Prova:</b> " + json[0]['nome_materia'] + " - " + json[0]['observacao_prova']
@@ -59,7 +60,6 @@ function montarListaAlunos(json) {
         var cor = "$000"
         
         var info = json.filter(a => a.id_aluno === aluno)
-        console.log(info)
         if(info[0]['respostaAluno_gabarito'] === info[0]['respostaCerta_questao']){
             cor = "rgba(145, 205, 147, .5)"
         } else {

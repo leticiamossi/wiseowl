@@ -296,6 +296,60 @@ function montarNumeros(json, jsonT) {
 
     chartProgressao = new ApexCharts(document.querySelector("#progresso-tempo"), options);
     chartProgressao.render();
+
+    mpTopicos.filter(tp => tp.err > 60.0).sort((a, b) => b.err - a.err).forEach((t, index) => {
+        var questoesCrit = json.filter(q => q.topico_assunto === t.topico)
+
+        questoesCrit.forEach((qc, index) => {
+            var respostaEscolhida = ""
+            switch (qc.respostaAluno_gabarito) {
+                case 'respostaUm_questao':
+                    respostaEscolhida = 'A'
+                    break
+                case 'respostaDois_questao':
+                    respostaEscolhida = 'B'
+                    break
+                case 'respostaTres_questao':
+                    respostaEscolhida = 'C'
+                    break
+                case 'respostaQuatro_questao':
+                    respostaEscolhida = 'D'
+                    break
+                case 'respostaCinco_questao':
+                    respostaEscolhida = 'E'
+                    break
+            }
+
+            var respostaCerta = ""
+            switch (qc.respostaCerta_questao) {
+                case 'respostaUm_questao':
+                    respostaCerta = 'A'
+                    break
+                case 'respostaDois_questao':
+                    respostaCerta = 'B'
+                    break
+                case 'respostaTres_questao':
+                    respostaCerta = 'C'
+                    break
+                case 'respostaQuatro_questao':
+                    respostaCerta = 'D'
+                    break
+                case 'respostaCinco_questao':
+                    respostaCerta = 'E'
+                    break
+            }
+
+            if(respostaCerta !== respostaEscolhida){
+                document.getElementById("lista-questoes").innerHTML +=
+                    `<tr id="row-${index}"">
+                        <td>${qc.topico_assunto}</td>
+                        <td>${respostaEscolhida}</td>
+                        <td>${respostaCerta}</td>
+                        <td><a href="/relatorio/questao/${qc.id_questaoProva}" class="btn btn-row">Detalhar</a></td>
+                    </tr>`
+            }
+        })
+    })
 }
 
 function atualizarRelatorioAluno(json, jsonT) {
@@ -407,7 +461,7 @@ function atualizarRelatorioAluno(json, jsonT) {
             notaTurma: notaTurma.toFixed(1)
         })
     })
-console.log(provas.sort((a, b) => new Date(a.data) - new Date(b.data)).map(p => new Date(p.data).toLocaleDateString('pt-BR')))
+    console.log(provas.sort((a, b) => new Date(a.data) - new Date(b.data)).map(p => new Date(p.data).toLocaleDateString('pt-BR')))
     if (chartProgressao) {
         chartProgressao.updateSeries([{
             name: "Aluno",

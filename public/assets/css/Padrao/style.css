@@ -464,7 +464,7 @@ tr.details.expanded {
         padding: 0 20px;
     }
 
-    #analise-questoes, #analise-alunos {
+    #analise-questoes, #analise-alunos, #questoes-criticas {
         width: 90%;
         overflow-y: auto;
         margin: 0 auto;
