@@ -6,11 +6,11 @@ a, a:active {
     text-decoration: none;
 }
 
-a p, a:active p {
+a .subtitulo-nav, a:active .subtitulo-nav {
     color: black;
 }
 
-a h5, a:active h5 {
+a .titulo-nav, a:active .titulo-nav {
     color: #5B009B;
 }
 
