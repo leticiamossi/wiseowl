@@ -119,7 +119,6 @@
                             <tr>
                                 <th>Data</th>
                                 <th>Matéria</th>
-                                <th>Resultados</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -168,7 +167,6 @@
                 row.innerHTML = `
                 <td>${prova.data_prova}</td>
                 <td>${prova.nome_materia} - ${prova.nome_turma}</td>
-                <td></td>
                 <td><a href="/prova/detalhes/${prova.id_prova}" class="btn btn-row">Detalhes</a></td>
             `;
 
