@@ -1,5 +1,4 @@
 <?php
-
 spl_autoload_register(function ($filename){
     $file = '.'.DIRECTORY_SEPARATOR. $filename.'.php';
     if(DIRECTORY_SEPARATOR === '/'):
@@ -12,5 +11,4 @@ spl_autoload_register(function ($filename){
         echo 'Erro ao importar arquivo!';
     endif;
 });
-
 ?>

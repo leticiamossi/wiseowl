@@ -21,9 +21,9 @@ class Prova
         $conn = new Database();
         $result = $conn->executeQuery("SELECT p.*, m.*, qp.*, qd.assunto_questaoDesc, qo.assunto_questao, ass.*, g.* FROM tb_prova AS p LEFT JOIN tb_turmas AS t ON p.turma_prova = t.id_turma 
                                                                     LEFT JOIN tb_materias AS m ON m.id_materia = p.materia_prova
-                                                                    LEFT JOIN tb_questoesProva AS qp ON qp.prova_questaoProva = p.id_prova
-                                                                    LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
-                                                                    LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                    LEFT JOIN tb_questoesprova AS qp ON qp.prova_questaoProva = p.id_prova
+                                                                    LEFT JOIN tb_questaodesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc
+                                                                    LEFT JOIN tb_questoesobj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
                                                                     LEFT JOIN tb_assuntos AS ass ON qo.assunto_questao = ass.id_assunto || qd.assunto_questaoDesc = ass.id_assunto
                                                                     LEFT JOIN tb_gabaritos AS g ON g.questao_gabarito = qp.id_questaoProva
                                                                     WHERE t.professor_turma = :ID", array(':ID' => $id));
@@ -42,7 +42,7 @@ class Prova
     public static function AddQuestaoObj(string $idProva, string $idQuestao, string $peso)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("INSERT INTO tb_questoesProva(prova_questaoProva,questaoObj_questaoProva,peso_questaoProva)
+        $result = $conn->executeQuery("INSERT INTO tb_questoesprova(prova_questaoProva,questaoObj_questaoProva,peso_questaoProva)
                                         VALUES (:PROVA, :QUESTAO, :PESO)", array(':PROVA' => $idProva, ':QUESTAO' => $idQuestao, ':PESO' => $peso));
         return $result->rowCount();
     }
@@ -50,7 +50,7 @@ class Prova
     public static function AddQuestaoDesc(string $idProva, string $idQuestao, string $peso)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("INSERT INTO tb_questoesProva(prova_questaoProva,questaoDesc_questaoProva,peso_questaoProva)
+        $result = $conn->executeQuery("INSERT INTO tb_questoesprova(prova_questaoProva,questaoDesc_questaoProva,peso_questaoProva)
                                         VALUES (:PROVA, :QUESTAO, :PESO)", array(':PROVA' => $idProva, ':QUESTAO' => $idQuestao, ':PESO' => $peso));
         return $result->rowCount();
     }
@@ -81,7 +81,7 @@ class Prova
     public static function CountQuestoes(string $id)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesProva WHERE prova_questaoProva = :ID",
+        $result = $conn->executeQuery("SELECT COUNT(id_questaoProva) AS num_questao FROM tb_questoesprova WHERE prova_questaoProva = :ID",
                                         array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -97,8 +97,8 @@ class Prova
     public static function GetQuestoes(string $id)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("SELECT * FROM tb_questoesProva AS qp LEFT JOIN tb_questoesObj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
-                                                                            LEFT JOIN tb_questaoDesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc 
+        $result = $conn->executeQuery("SELECT * FROM tb_questoesprova AS qp LEFT JOIN tb_questoesobj AS qo ON qp.questaoObj_questaoProva = qo.id_questao
+                                                                            LEFT JOIN tb_questaodesc AS qd ON qp.questaoDesc_questaoProva = qd.id_questaoDesc 
                                                                             WHERE qp.prova_questaoProva = :ID 
                                                                             ORDER BY qp.id_questaoProva", array(':ID' => $id));
         return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +107,7 @@ class Prova
     public static function AnularQuestao(string $id)
     {
         $conn = new Database();
-        $result = $conn->executeQuery("UPDATE tb_questoesProva SET status_questaoProva = 'Anulada' WHERE id_questaoProva = :ID", array(':ID' => $id));
+        $result = $conn->executeQuery("UPDATE tb_questoesprova SET status_questaoProva = 'Anulada' WHERE id_questaoProva = :ID", array(':ID' => $id));
         $result->rowCount();
     }
 }

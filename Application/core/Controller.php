@@ -43,7 +43,7 @@ class Controller
         if(!isset($_SESSION['ID'])) {
             //Destroi a sessao 
             session_destroy();
-            $this->pageNotFound();
+            echo '<script>window.location.href="/login"</script>';
         } else {
             return $this->permission = true;
         }

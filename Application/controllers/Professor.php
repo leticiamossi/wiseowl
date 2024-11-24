@@ -14,7 +14,8 @@ class Professor extends Controller
         $conn = $this->model('professor');
         $insert = $conn::InsertProfessor($nome, $sobrenome, $email, $senha);
 
-        header("Location: /login/login/$email/$senha");
+        echo '<script>window.location.href="/login/login/'.$email.'/'.$senha.'"</script>';
+
     }
 
     public function disciplina()

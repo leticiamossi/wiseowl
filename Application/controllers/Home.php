@@ -1,7 +1,5 @@
 <?php
-
 use Application\core\Controller;
-
 class Home extends Controller
 { 
     public function index()
@@ -10,9 +8,8 @@ class Home extends Controller
         if($this->permission){
             $this->view('home/index');
         } else {
-            header("Location: /Login");
+            echo '<script>window.location.href="/login"</script>';
         }
     }
 }
-
 ?>

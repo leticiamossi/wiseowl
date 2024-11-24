@@ -138,9 +138,9 @@ class Cadastro extends Controller
             }
             if ($insert2 > 0) {
                 if (is_null($end)) {
-                    header("Location: /prova/tipoQuestao/$id");
+                    echo '<script>window.location.href="/prova/tipoQuestao/'.$id.'"</script>';
                 } else {
-                    header("Location: /prova/detalhes/$id");
+                    echo '<script>window.location.href="/prova/detalhes/'.$id.'"</script>';
                 }
             }
         }
@@ -171,7 +171,8 @@ class Cadastro extends Controller
     
             $conn = $this->model('escola');
             $insert = $conn::InsertEscola($nome, $arquivoNovo, $id);
-            header("Location: /aluno/index");
+            echo '<script>window.location.href="/aluno/index"</script>';
+
         }
     }
 
@@ -186,7 +187,7 @@ class Cadastro extends Controller
     
             $conn = $this->model('turmas');
             $insert = $conn::InsertTurma($nome, $ano, $id, $escola);
-            header("Location: /aluno/index");
+            echo '<script>window.location.href="/aluno/index"</script>';
         }
     }
 
@@ -200,7 +201,7 @@ class Cadastro extends Controller
     
             $conn = $this->model('aluno');
             $insert = $conn::InsertAluno($nome, $sobrenome, $turma);
-            header("Location: /aluno/index");
+            echo '<script>window.location.href="/aluno/index"</script>';
         }
     }
 
@@ -255,7 +256,7 @@ class Cadastro extends Controller
                 $cont++;
             }
             
-            header("Location: /prova/detalhes/$idProva");
+            echo '<script>window.location.href="/prova/detalhes/'.$idProva.'"</script>';
         }
     }
 
@@ -266,6 +267,6 @@ class Cadastro extends Controller
         $conn = $this->model('professor');
         $insert = $conn::InsertDisciplina($materia, $_SESSION['ID']);
 
-        header("Location: /aluno/index");
+        echo '<script>window.location.href="/aluno/index"</script>';
     }
 }

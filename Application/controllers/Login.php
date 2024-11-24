@@ -18,19 +18,19 @@ class Login extends Controller
         $conn = $this->model('professor');
         $professor = $conn::FindProfessor($email, $senha);
 
-        session_start();
+        if(!isset($_SESSION)) session_start();
         
         foreach($professor as $p){
             $_SESSION['ID'] = $p['id_professor'];
             $_SESSION['NOME'] = $p['nome_professor'];
         }
 
-        header("Location: /home/index");
+        echo '<script>window.location.href="/home/index"</script>';
     }
 
     public function logout(){
         session_destroy();
-        header("Location: /");
+        echo '<script>window.location.href="/login"</script>';
     }
 }
 

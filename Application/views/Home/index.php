@@ -72,7 +72,7 @@
     </header>
     <main class="fundo-roxo">
         <div class="caixa">
-            <?php echo "Olá, ".$_SESSION['NOME'] ?>
+            
         </div>
     </main>
     <script src="../../public/assets/js/menu.js"></script>
