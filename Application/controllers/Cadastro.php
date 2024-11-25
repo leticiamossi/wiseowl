@@ -35,7 +35,7 @@ class Cadastro extends Controller
     
                 //IMAGEM
                 if (!empty($_FILES['fileInput'])) {
-                    $dir = "C:/xampp/htdocs/wiseowl/public/assets/img/questoes/";
+                    $dir = $_SERVER['DOCUMENT_ROOT']."/public/assets/img/questoes/";
                     $arquivo = $_FILES['fileInput'];
                     $data = str_replace("-", "", date('d-m-y'));
     
@@ -153,7 +153,7 @@ class Cadastro extends Controller
             $nome = $_POST['nome'];
             //IMAGEM
             if (!empty($_FILES['fileInput'])) {
-                $dir = "C:/xampp/htdocs/wiseowl/public/assets/img/logo-escola/";
+                $dir = $_SERVER['DOCUMENT_ROOT']."/public/assets/img/logo-escola/";
                 $arquivo = $_FILES['fileInput'];
                 $data = str_replace("-", "", date('d-m-y'));
     

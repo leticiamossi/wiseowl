@@ -204,6 +204,7 @@
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     outline: none;
+    width: 100%;
 }
 
 form {

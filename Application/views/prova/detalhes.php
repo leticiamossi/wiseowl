@@ -63,9 +63,9 @@
                 <p>Aluno</p>
             </a>
             <a href="/login/logout" class="item-nav">
-                <svg xmlns="http://www.w3.org/2000/svg"class="icon" id="Layer_1" height="512" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" id="Layer_1" height="512" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
                 </svg>
                 <p>Sair</p>
             </a>
@@ -176,7 +176,7 @@
                     }
                     nota = (aux.notaMax_prova / cont) * certa
                 });
-                
+
                 certa = (certa / cont) * 100
                 errada = (errada / cont) * 100
 
@@ -218,16 +218,20 @@
             `;
 
                     row.addEventListener("click", function() {
+                        let detailsRow = document.getElementById(`details-${index}`);
+
+                        if (detailsRow.classList.contains("expanded")) {
+                            return;
+                        }
+
                         const allDetailsRows = document.querySelectorAll('.details');
-                                    allDetailsRows.forEach(detailRow => {
+                        allDetailsRows.forEach(detailRow => {
                             if (detailRow.classList.contains('expanded')) {
                                 detailRow.classList.remove('expanded');
-                                // Also remove the 'active' class from the main row
                                 const activeRow = document.querySelector(`#${detailRow.id.replace('details-', 'row-')}`);
                                 activeRow.classList.remove('row-active');
                             }
                         });
-                        let detailsRow = document.getElementById(`details-${index}`);
                         let mainRow = document.getElementById(`row-${index}`);
 
                         detailsRow.classList.toggle("expanded");
@@ -236,7 +240,6 @@
 
                     });
 
-                    // Create a hidden row for details
                     let detailsRow = document.createElement("tr");
                     detailsRow.id = `details-${index}`;
                     detailsRow.classList.add("details");
@@ -251,7 +254,6 @@
                 </td>
             `;
 
-                    // Append both rows to the table
                     cardResultados.appendChild(row);
                     cardResultados.appendChild(detailsRow);
                 }

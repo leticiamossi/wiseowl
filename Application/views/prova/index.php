@@ -119,7 +119,6 @@
                             <tr>
                                 <th>Data</th>
                                 <th>Matéria</th>
-                                <th>Resultados</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -162,19 +161,22 @@
             }
 
             json.forEach((prova, index) => {
-                // Create a row for basic info
                 let row = document.createElement("tr");
                 row.id = `row-${index}`;
                 row.classList.add("row");
                 row.innerHTML = `
                 <td>${prova.data_prova}</td>
                 <td>${prova.nome_materia} - ${prova.nome_turma}</td>
-                <td></td>
                 <td><a href="/prova/detalhes/${prova.id_prova}" class="btn btn-row">Detalhes</a></td>
             `;
 
-                // Add a click event to expand the row
                 row.addEventListener("click", function() {
+                    let detailsRow = document.getElementById(`details-${index}`);
+    
+                    if (detailsRow.classList.contains("expanded")) {
+                        return;
+                    }
+                    
                     const allDetailsRows = document.querySelectorAll('.details');
                     allDetailsRows.forEach(detailRow => {
                         if (detailRow.classList.contains('expanded')) {
@@ -183,7 +185,6 @@
                             activeRow.classList.remove('row-active');
                         }
                     });
-                    let detailsRow = document.getElementById(`details-${index}`);
                     let mainRow = document.getElementById(`row-${index}`);
 
 
@@ -195,7 +196,6 @@
                     
                 });
 
-                // Create a hidden row for details
                 let detailsRow = document.createElement("tr");
                 detailsRow.id = `details-${index}`;
                 detailsRow.classList.add("details");
@@ -210,7 +210,6 @@
                 </td>
             `;
 
-                // Append both rows to the table
                 cardProva.appendChild(row);
                 cardProva.appendChild(detailsRow);
             })

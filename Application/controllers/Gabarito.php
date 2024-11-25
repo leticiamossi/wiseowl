@@ -20,9 +20,9 @@ class Gabarito extends Controller
     {
         $this->verification();
         if($this->permission){
-            putenv('GOOGLE_APPLICATION_CREDENTIALS=/xampp/htdocs/wiseowl/public/key/wiseowl-438417-aacbe0955e44.json');
+            putenv('GOOGLE_APPLICATION_CREDENTIALS='.$_SERVER['DOCUMENT_ROOT'].'/public/key/wiseowl-438417-aacbe0955e44.json');
     
-            require '/xampp/htdocs/wiseowl/public/assets/composer/vendor/autoload.php';
+            require $_SERVER['DOCUMENT_ROOT'].'/public/assets/composer/vendor/autoload.php';
     
             $client = new ImageAnnotatorClient();
             $imagePath = $_FILES['fileInput']['tmp_name'];

@@ -51,6 +51,7 @@ class Ia extends Controller
             $response = curl_exec($ch);
             curl_close($ch);
             $json = json_decode($response);
+
             foreach($json->candidates as $aux){
                 foreach($aux->content->parts as $i){
     
@@ -58,13 +59,12 @@ class Ia extends Controller
                     $jsonResponse = str_replace("```", "", $jsonResponse);
                     $jsonResponse = str_replace("json", "", $jsonResponse);
                     $jsonQuestao = json_decode($jsonResponse);
-    
                     $enunciado = $jsonQuestao->enunciado;
-                    $a = $jsonQuestao->opcoes->a;
-                    $b =  $jsonQuestao->opcoes->b;
-                    $c = $jsonQuestao->opcoes->c;
-                    $d = $jsonQuestao->opcoes->d;
-                    $e = $jsonQuestao->opcoes->e;
+                    $a = $jsonQuestao->opcoes->a->texto;
+                    $b =  $jsonQuestao->opcoes->b->texto;
+                    $c = $jsonQuestao->opcoes->c->texto;
+                    $d = $jsonQuestao->opcoes->d->texto;
+                    $e = $jsonQuestao->opcoes->e->texto;
                     $correta = $jsonQuestao->correta;
                 }
             }
