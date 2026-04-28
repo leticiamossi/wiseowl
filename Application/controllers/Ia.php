@@ -40,7 +40,7 @@ class Ia extends Controller
                 ]
             ];
     
-            $GOOGLE_API_KEY = "AIzaSyB-QdkYxtGP8j93NJIH_TmxX_02w8cEY3Y";
+            $GOOGLE_API_KEY = "API_KEY";
             $ch = curl_init("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$GOOGLE_API_KEY");
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
